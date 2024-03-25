@@ -7,6 +7,7 @@ import AdminLayout from "../layouts/AdminLayout/AdminLayout.vue";
 import Admin from "../views/Admin/Admin.vue";
 import LoginAdmin from "@/views/LoginAdmin/LoginAdmin.vue";
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout.vue";
+import RegisterAdmin from "@/views/RegisterAdmin/RegisterAdmin.vue";
 
 const routes = [
   // router Admin
@@ -20,6 +21,13 @@ const routes = [
   {
     path: "/admin/login",
     component: LoginAdmin,
+    meta: {
+      layout: AuthLayout,
+    },
+  },
+  {
+    path: "/admin/register",
+    component: RegisterAdmin,
     meta: {
       layout: AuthLayout,
     },

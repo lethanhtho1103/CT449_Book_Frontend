@@ -13,7 +13,7 @@
                         <div class="logo">
                           <img src="../../assets/coffee-cup.png" alt="" />
                           <span class="titleWeb"
-                            >RENT<span class="text-dark">BOOKS</span></span
+                            >LTT<span class="text-dark">BOOKS</span></span
                           >
                         </div>
                       </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6 d-none d-md-block m-auto">
                   <img
-                    src="https://lh7-us.googleusercontent.com/AltEthO7WiA_fB_dsU0ufEZaH4iIzsFkny8mDSAFnH4SZAAjx01paYEmbDe11qSIJiPRr0dG3FTLU3d-gfB_0wjdx-v-v0kjPDk9HLIwkMH1ESKSpz9qTtR8Z38gJ8FM0V36icgb24Qsb8DURIvilec"
+                    src="../../assets/bg-form.png"
                     alt="login form"
                     class="imageLogin"
                   />
@@ -98,9 +98,6 @@ import axios from "axios";
 import { ref } from "vue";
 import { toast } from "vue3-toastify";
 import { useRouter } from "vue-router";
-import { useUserStore } from "../../stores/userStore";
-
-const userStore = useUserStore();
 
 const router = useRouter();
 

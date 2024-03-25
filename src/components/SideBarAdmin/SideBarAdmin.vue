@@ -3,7 +3,7 @@
     <div class="logo">
       <img :src="logoURL" alt="Vue" />
 
-      <span class="titleWeb">R<span class="text-dark">Books</span></span>
+      <span class="titleWeb">LTT<span class="text-dark">Books</span></span>
     </div>
     <div class="menu-toggle-wrap">
       <button class="menu-toggle" @click="ToggleMenu">

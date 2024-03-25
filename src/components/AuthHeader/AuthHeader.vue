@@ -8,7 +8,7 @@
     <div class="title">
       <div class="logo">
         <img src="../../assets/logo.png" alt="Vue" />
-        <span class="titleWeb">RENT<span class="text-dark">BOOKS</span></span>
+        <span class="titleWeb">LTT<span class="text-dark">BOOKS</span></span>
       </div>
     </div>
   </nav>

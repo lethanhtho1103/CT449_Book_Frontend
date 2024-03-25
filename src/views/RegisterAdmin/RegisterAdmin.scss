@@ -4,7 +4,6 @@
 
 .loginForm {
   background-color: #f1e9e9af;
-  margin-top: 40px;
   border: none;
   box-shadow: 0px 20px 20px #dfd8d8;
   border-radius: 10px;
@@ -98,15 +97,23 @@
 
   .iconPassword {
     margin-top: 5px;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
+}
+
+.selectGroup {
+  background-color: transparent;
+  padding: 7px;
+  border: none;
+  outline: none;
+}
+
+.selectGroup option {
+  background-color: var(--purple);
 }
 
 .btnPay {
   background-color: #5050b2;
-
   margin: 10px 0px;
   padding: 8px;
   text-align: center;
@@ -121,6 +128,7 @@
 }
 
 .btnPay:hover {
+  /* change the direction of the change here */
   opacity: 0.8;
 }
 
