@@ -8,16 +8,10 @@ import Admin from "../views/Admin/Admin.vue";
 import LoginAdmin from "@/views/LoginAdmin/LoginAdmin.vue";
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout.vue";
 import RegisterAdmin from "@/views/RegisterAdmin/RegisterAdmin.vue";
+import AboutAdmin from "@/views/AboutAdmin/AboutAdmin.vue";
 
 const routes = [
   // router Admin
-  {
-    path: "/admin/home",
-    component: Admin,
-    meta: {
-      layout: AdminLayout,
-    },
-  },
   {
     path: "/admin/login",
     component: LoginAdmin,
@@ -30,6 +24,20 @@ const routes = [
     component: RegisterAdmin,
     meta: {
       layout: AuthLayout,
+    },
+  },
+  {
+    path: "/admin/home",
+    component: Admin,
+    meta: {
+      layout: AdminLayout,
+    },
+  },
+  {
+    path: "/admin/about",
+    component: AboutAdmin,
+    meta: {
+      layout: AdminLayout,
     },
   },
 ];
