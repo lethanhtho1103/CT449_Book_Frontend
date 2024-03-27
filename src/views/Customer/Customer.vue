@@ -1,10 +1,10 @@
 <template>
   <div class="containPage">
-    <h2>Danh sách user</h2>
+    <h2>Danh sách người dùng</h2>
     <div class="contentPage" :style="`${isLogin ? '' : 'display: none'}`">
       <a-tabs v-model:activeKey="activeKey">
-        <a-tab-pane key="1" tab="Khách hàng">
-          <h4>Danh sách người dùng</h4>
+        <a-tab-pane key="1" tab="Độc giả">
+          <h4>Danh sách độc giả</h4>
           <a-table :dataSource="data" :columns="columns" rowKey="_id">
           </a-table>
         </a-tab-pane>

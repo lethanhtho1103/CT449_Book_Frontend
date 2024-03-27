@@ -75,36 +75,49 @@
         <table class="table table-hover text-center">
           <thead>
             <tr>
-              <th scope="col">Mã đơn mượn</th>
+              <th scope="col">STT</th>
               <th scope="col">Tên độc giả</th>
+              <th scope="col">Tên sách</th>
               <th scope="col">Ngày mượn</th>
               <th scope="col">Ngày trả</th>
+              <th scope="col">Số quyển</th>
+              <th scope="col">Số tiền</th>
               <th>Trạng thái</th>
             </tr>
           </thead>
           <tbody>
-            <td colspan="5" v-if="data.length === 0">
-              <div class="imageOrderEmpty">
-                <img src="" alt="Image" />
-                <p>Danh sách order trống</p>
-              </div>
+            <td colspan="10" v-if="listRents.length === 0">
+              <p class="pt-2">Danh sách order trống</p>
             </td>
-            <tr v-for="(order, index) in data" :key="index">
-              <th scope="row">{{ order._id }}</th>
-              <td>{{ order.MSKH[0].HoTenKH }}</td>
-              <td>{{ formatDateTime(order.NgayDH) }}</td>
+            <tr v-for="(rent, index) in listRents" :key="index">
+              <th scope="row">{{ index + 1 }}</th>
+              <td>{{ rent.MaDocGia.Ten }}</td>
+              <td>{{ rent.MaSach.TenSach }}</td>
+              <td>{{ formatDateTime(rent.NgayMuon) }}</td>
+              <td>{{ formatDateTime(rent.NgayTra) }}</td>
+              <td>{{ rent.SoLuong }}</td>
               <td>
+                {{
+                  tinhTien(
+                    rent.NgayTra,
+                    rent.NgayMuon,
+                    rent.SoLuong,
+                    rent.MaSach.DonGia
+                  )
+                }}
+              </td>
+              <!-- <td>
                 <input
                   class="inputDate"
                   type="datetime-local"
-                  v-model="order.NgayGH"
+                  v-model="rent.NgayGH"
                 />
-              </td>
+              </td> -->
               <td class="d-flex justify-content-center">
-                <button @click="handleAccess(order)" class="accept">
+                <button @click="handleAccess(rent)" class="accept">
                   <i class="fa-solid fa-check"></i>
                 </button>
-                <button class="reject" @click="handleDenied(order)">
+                <button class="reject" @click="handleDenied(rent)">
                   <i class="fa-solid fa-x"></i>
                 </button>
               </td>
@@ -117,7 +130,7 @@
   <div v-else class="denied">
     <img
       class="d-flex mt-5 ml-auto mr-auto mb-5"
-      src="../../../public/Illustration/denied.png"
+      src="../../../public/imageIcon.jpg"
       alt=""
     />
     <h3 class="text-center">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
@@ -130,10 +143,8 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 import moment from "moment";
 
-const idStaff = ref("");
-const data = ref([]);
-const NgayGH = ref();
-const idOrder = ref("");
+const listRents = ref([]);
+const trangThai = ref("");
 
 const totalCustomer = ref("");
 const totalOrder = ref("");
@@ -144,24 +155,36 @@ const isLogin = localStorage.getItem("isLogin");
 
 const fetchData = () => {
   axios
-    .get("http://localhost:3000/order")
+    .get("http://localhost:8082/rent/W")
     .then((res) => {
-      console.log("Data", res.data);
-      data.value = res.data;
-      data.value = res.data.map((item) => ({
-        ...item,
-        NgayGH: "",
-      }));
-      console.log("Data moiw", data.value);
+      listRents.value = res.data;
+      console.log(listRents.value);
     })
     .catch((err) => console.log(err));
 };
 
 fetchData();
 
+function tinhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
+  // Tạo đối tượng Date từ chuỗi ngày bắt đầu và kết thúc
+  var startDate = new Date(ngayBatDau);
+  var endDate = new Date(ngayKetThuc);
+
+  // Chuyển ngày thành milliseconds
+  var oneDay = 24 * 60 * 60 * 1000; // Số milliseconds trong 1 ngày
+
+  // Tính số ngày giữa hai ngày
+  var soNgay = Math.round(Math.abs((startDate - endDate) / oneDay));
+
+  // Tính tổng tiền
+  var tongTien = soQuyen * giaPerQuyen * soNgay;
+
+  return tongTien;
+}
+
 const dashBoard = () => {
   axios
-    .get("http://localhost:3000/customer/dashboard")
+    .get("http://localhost:8082/customer/dashboard")
     .then((res) => {
       totalCustomer.value = res.data.user;
       totalStaff.value = res.data.staff;
@@ -170,47 +193,45 @@ const dashBoard = () => {
     })
     .catch((err) => console.log(err));
 };
-dashBoard();
+// dashBoard();
 
 const formatDateTime = (dateTime) => {
   return moment(dateTime).format("DD-MM-YYYY HH:mm:ss");
 };
 
 const handleAccess = (order) => {
-  idOrder.value = order._id;
-  NgayGH.value = order.NgayGH;
-  idStaff.value = localStorage.getItem("ID_User");
-  console.log("ID_Order", idOrder.value);
-  console.log("Ngay GH", order.NgayGH);
-  if (NgayGH.value === "") {
-    toast.error("Vui lòng chọn ngày giao hàng");
-  } else {
-    axios
-      .put("http://localhost:3000/order", { idStaff, idOrder, NgayGH })
-      .then((res) => {
-        if (res.data.error) {
-          toast.error(res.data.error);
-        } else {
-          fetchData();
-          dashBoard();
-          toast.success(res.data.message);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-};
-
-const handleDenied = (order) => {
-  idOrder.value = order._id;
+  trangThai.value = "A";
   axios
-    .delete("http://localhost:3000/order/admin/" + idOrder.value)
+    .put("http://localhost:8082/rent/" + order._id, {
+      trangThai: trangThai.value,
+    })
     .then((res) => {
+      console.log(res);
       if (res.data.error) {
         toast.error(res.data.error);
       } else {
         fetchData();
-        toast.success(res.data.message);
         dashBoard();
+        toast.success("Đã duyệt đơn mượn thành công.");
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
+const handleDenied = (order) => {
+  trangThai.value = "D";
+  axios
+    .put("http://localhost:8082/rent/" + order._id, {
+      trangThai: trangThai.value,
+    })
+    .then((res) => {
+      console.log(res);
+      if (res.data.error) {
+        toast.error(res.data.error);
+      } else {
+        fetchData();
+        dashBoard();
+        toast.success("Đã từ chối đơn mượn thành công.");
       }
     })
     .catch((err) => console.log(err));
