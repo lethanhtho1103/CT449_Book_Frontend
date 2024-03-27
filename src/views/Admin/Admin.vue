@@ -188,12 +188,12 @@ const dashBoard = () => {
     .then((res) => {
       totalCustomer.value = res.data.user;
       totalStaff.value = res.data.staff;
-      totalOrder.value = res.data.order.length;
-      totalPending.value = res.data.orderPending.length;
+      totalOrder.value = res.data.rent.length;
+      totalPending.value = res.data.rentWaiting.length;
     })
     .catch((err) => console.log(err));
 };
-// dashBoard();
+dashBoard();
 
 const formatDateTime = (dateTime) => {
   return moment(dateTime).format("DD-MM-YYYY HH:mm:ss");
