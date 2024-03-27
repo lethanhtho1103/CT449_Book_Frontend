@@ -1,8 +1,6 @@
 <template>
   <div class="containPage">
-    <div class="titlePage">
-      <!-- <h2>Profile</h2> -->
-    </div>
+    <div class="titlePage"></div>
     <div class="contentPage">
       <section class="h-100 gradient-custom-2">
         <div class="h-100">
@@ -24,7 +22,7 @@
                       style="width: 150px; z-index: 1"
                     />
                     <router-link
-                      to="/admin/editprofile"
+                      to="/admin/edit-profile"
                       style="z-index: 1"
                       class="btn btn-edit"
                     >
@@ -92,7 +90,6 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-import { toast } from "vue3-toastify";
 
 const data = ref({});
 

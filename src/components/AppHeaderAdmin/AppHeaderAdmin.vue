@@ -3,7 +3,9 @@
     <div class="container-fluid">
       <div class="infoUser d-flex ml-auto">
         <div v-if="isUserLoggedIn()" class="contentInfo">
-          <img :src="imageUser" class="imageUser" alt="" />
+          <router-link to="/admin/info">
+            <img :src="imageUser" class="imageUser" alt=""
+          /></router-link>
           <span class="nameUser ml-1">
             {{ username }}
           </span>
