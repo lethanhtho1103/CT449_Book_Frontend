@@ -11,6 +11,7 @@ import RegisterAdmin from "@/views/RegisterAdmin/RegisterAdmin.vue";
 import AboutAdmin from "@/views/AboutAdmin/AboutAdmin.vue";
 import InfoAdmin from "@/views/InfoAdmin/InfoAdmin.vue";
 import EditProfileAdmin from "@/views/EditProfileAdmin/EditProfileAdmin.vue";
+import Customer from "@/views/Customer/Customer.vue";
 
 const routes = [
   // router Admin
@@ -38,6 +39,14 @@ const routes = [
   {
     path: "/admin/about",
     component: AboutAdmin,
+    meta: {
+      layout: AdminLayout,
+    },
+  },
+  {
+    path: "/admin/customer",
+
+    component: Customer,
     meta: {
       layout: AdminLayout,
     },
