@@ -9,7 +9,7 @@
           placeholder="Tìm kiếm tên sách"
           aria-label="Search"
         />
-        <span @click="searchDrinks" class="iconSearch"
+        <span @click="searchBooks" class="iconSearch"
           ><i class="fa-solid fa-magnifying-glass"></i
         ></span>
       </div>
@@ -22,107 +22,6 @@
             <i class="fa-solid fa-mug-hot"></i> Thêm
           </button>
         </router-link>
-        <a-modal
-          style="top: 40px"
-          v-model:open="isModal"
-          width="800px"
-          title="Thêm sách"
-          @ok="handleOk"
-          @cancel="handleCancel"
-          okText="Thêm sách"
-          cancelText="Đóng"
-        >
-          <form action="" enctype="multipart/form-data">
-            <div class="contentModal row">
-              <div class="leftModal col">
-                <img class="imageLeftModal" :src="imageUpload" alt="" />
-                <div class="btnAddImage d-flex">
-                  <label for="image"
-                    ><i class="fa-solid fa-image iconModal"></i>Thêm ảnh
-                    sách</label
-                  >
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept="image/jpeg, image/png, image/jpg"
-                    @change="handleImage"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="rightModal col">
-                <div class="groupForm">
-                  <span>Tên sách:</span>
-                  <input
-                    type="text"
-                    class="inputGroup"
-                    v-model="tenSach"
-                    name="tenSach"
-                    id=""
-                    placeholder="Tên sách"
-                    autocomplete="off"
-                  />
-                </div>
-                <p class="errorText" v-if="errors.name">{{ errors.name }}</p>
-                <div class="groupForm">
-                  <span>Đơn giá:</span>
-                  <input
-                    type="number"
-                    min="0"
-                    class="inputGroup"
-                    v-model="donGia"
-                    name="donGia"
-                    id=""
-                    placeholder="Đơn Giá"
-                    autocomplete="off"
-                  />
-                </div>
-                <p class="errorText" v-if="errors.price">{{ errors.price }}</p>
-                <div class="groupForm">
-                  <span>Số quyển:</span>
-                  <input
-                    type="number"
-                    min="1"
-                    class="inputGroup"
-                    v-model="soQuyen"
-                    name="soQuyen"
-                    id=""
-                    placeholder="Số quyển sách"
-                    autocomplete="off"
-                  />
-                </div>
-                <p class="errorText" v-if="errors.quantity">
-                  {{ errors.quantity }}
-                </p>
-                <div class="groupForm">
-                  <span>Năm xuất bản:</span>
-                  <input
-                    type="number"
-                    class="inputGroup"
-                    min="1"
-                    v-model="namXuatBan"
-                    name="namXuatBan"
-                    id=""
-                    placeholder="Năm xuất bản"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="groupForm">
-                  <span>Nhà xuất bản:</span>
-                  <select>
-                    <option value="">Chọn nhà xuất bản</option>
-                    "
-                    <option value="">An Giang</option>
-                    "
-                    <option value="">Sóc Trăng</option>
-                    "
-                  </select>
-                </div>
-              </div>
-            </div>
-          </form>
-        </a-modal>
       </div>
     </div>
     <div class="contentPage">
@@ -187,6 +86,115 @@
         <p>Không tìm thấy sách</p>
       </div>
 
+      <!-- Modal add -->
+      <a-modal
+        style="top: 40px"
+        v-model:open="isModal"
+        width="800px"
+        title="Thêm sách"
+        @ok="handleOk"
+        @cancel="handleCancel"
+        okText="Thêm sách"
+        cancelText="Đóng"
+      >
+        <form action="" enctype="multipart/form-data">
+          <div class="contentModal row">
+            <div class="leftModal col">
+              <img class="imageLeftModal" :src="imageUpload" alt="" />
+              <div class="btnAddImage d-flex">
+                <label for="image"
+                  ><i class="fa-solid fa-image iconModal"></i>Thêm ảnh
+                  sách</label
+                >
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  accept="image/jpeg, image/png, image/jpg"
+                  @change="handleImage"
+                  required
+                />
+              </div>
+            </div>
+            <div class="rightModal col">
+              <div class="groupForm">
+                <span>Tên sách:</span>
+                <input
+                  type="text"
+                  class="inputGroup"
+                  v-model="tenSach"
+                  name="tenSach"
+                  id=""
+                  placeholder="Tên sách"
+                  autocomplete="off"
+                />
+              </div>
+              <p class="errorText" v-if="errors.name">{{ errors.name }}</p>
+              <div class="groupForm">
+                <span>Đơn giá:</span>
+                <input
+                  type="number"
+                  min="0"
+                  class="inputGroup"
+                  v-model="donGia"
+                  name="donGia"
+                  id=""
+                  placeholder="Đơn Giá"
+                  autocomplete="off"
+                />
+              </div>
+              <p class="errorText" v-if="errors.price">{{ errors.price }}</p>
+              <div class="groupForm">
+                <span>Số quyển:</span>
+                <input
+                  type="number"
+                  min="1"
+                  class="inputGroup"
+                  v-model="soQuyen"
+                  name="soQuyen"
+                  id=""
+                  placeholder="Số quyển sách"
+                  autocomplete="off"
+                />
+              </div>
+              <p class="errorText" v-if="errors.NamXuatBan">
+                {{ errors.NamXuatBan }}
+              </p>
+              <div class="groupForm">
+                <span>Năm xuất bản:</span>
+                <input
+                  type="number"
+                  class="inputGroup"
+                  min="1"
+                  v-model="namXuatBan"
+                  name="namXuatBan"
+                  id=""
+                  placeholder="Năm xuất bản"
+                  autocomplete="off"
+                />
+              </div>
+              <p class="errorText" v-if="errors.nxb">
+                {{ errors.nxb }}
+              </p>
+              <div class="groupForm">
+                <span>Nhà xuất bản:</span>
+                <select v-model="idNxb">
+                  <option value="">Chọn nhà xuất bản</option>
+                  <option
+                    v-for="(item, index) in listNxbs"
+                    :key="index"
+                    :value="item._id"
+                  >
+                    {{ item.TenNxb }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </a-modal>
+
+      <!-- Modal edit  -->
       <a-modal
         style="top: 40px"
         v-model:open="isModalEdit"
@@ -210,15 +218,14 @@
                   name="image"
                   id="image"
                   accept="image/jpeg, image/png, image/jpg"
-                  @change="handleImageUpate"
+                  @change="handleImageUpdate"
                   required
                 />
               </div>
-              <!-- <p class="errorText" v-if="errors.picture">{{ errors.picture }}</p> -->
             </div>
             <div class="rightModal col">
               <div class="groupForm">
-                <span>Tên</span>
+                <span>Tên sách:</span>
                 <input
                   type="text"
                   class="inputGroup"
@@ -231,11 +238,11 @@
               </div>
               <p class="errorText" v-if="errors.name">{{ errors.name }}</p>
               <div class="groupForm">
-                <span>Giá</span>
+                <span>Đơn giá:</span>
                 <input
                   type="number"
                   class="inputGroup"
-                  v-model="selectedItem.Gia"
+                  v-model="selectedItem.DonGia"
                   name="donGia"
                   id=""
                   placeholder="Giá sách"
@@ -245,47 +252,45 @@
               <p class="errorText" v-if="errors.price">{{ errors.price }}</p>
 
               <div class="groupForm">
-                <span>Số lượng</span>
+                <span>Số quyển:</span>
                 <input
                   type="number"
                   class="inputGroup"
-                  v-model="selectedItem.SoLuongHang"
+                  v-model="selectedItem.SoQuyen"
                   name="soQuyen"
                   id=""
                   placeholder="Số lượng sách"
                   autocomplete="off"
                 />
               </div>
-              <p class="errorText" v-if="errors.quantity">
-                {{ errors.quantity }}
+              <p class="errorText" v-if="errors.NamXuatBan">
+                {{ errors.namXuatBan }}
               </p>
               <div class="groupForm">
-                <span>Ghi chú</span>
+                <span>Năm xuất bản</span>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
                   class="inputGroup"
-                  v-model="selectedItem.GhiChu"
+                  v-model="selectedItem.NamXuatBan"
                   name="namXuatBan"
                   id=""
-                  placeholder="Ghi chú sách"
+                  placeholder="Năm xuất bản"
                   autocomplete="off"
                 />
               </div>
-              <div class="groupForm2">
-                <span>Mô tả</span>
-                <textarea
-                  class="groupText"
-                  name="idNxb"
-                  id=""
-                  v-model="selectedItem.MoTaHH"
-                  placeholder="Mô tả sách"
-                  cols="20"
-                  autocomplete="off"
-                  spellcheck="false"
-                  rows="5"
-                ></textarea>
+              <div class="groupForm">
+                <span>Nhà xuất bản:</span>
+                <select v-model="selectedItem.MaNxb._id">
+                  <option
+                    v-for="(item, index) in listNxbs"
+                    :key="index"
+                    :value="item._id"
+                  >
+                    {{ item.TenNxb }}
+                  </option>
+                </select>
               </div>
-              <p class="errorText" v-if="errors.des">{{ errors.des }}</p>
             </div>
           </div>
         </form>
@@ -321,6 +326,7 @@ const idNxb = ref("");
 const image = ref();
 
 const data = ref([]);
+const listNxbs = ref([]);
 const searchQuery = ref("");
 
 const isLogin = localStorage.getItem("isLogin");
@@ -334,9 +340,19 @@ const fetchData = () => {
     .catch((err) => console.log(err));
 };
 
-fetchData();
+const fetchDataNxb = () => {
+  axios
+    .get("http://localhost:8082/published")
+    .then((res) => {
+      listNxbs.value = res.data;
+    })
+    .catch((err) => console.log(err));
+};
 
-const searchDrinks = () => {
+fetchData();
+fetchDataNxb();
+
+const searchBooks = () => {
   if (searchQuery.value.trim() === "") {
     toast.warn("Vui lòng nhập tên sách");
   } else {
@@ -361,14 +377,15 @@ const isModal = ref(false);
 const showModal = () => {
   isModal.value = true;
 };
+
 const handleCancel = () => {
   tenSach.value = "";
   donGia.value = 0;
   soQuyen.value = 0;
-  namXuatBan.value = "";
+  namXuatBan.value = 0;
   idNxb.value = "";
   image.value = {};
-  imageUpload.value = "../../public/Illustration/imageIcon.png";
+  imageUpload.value = "../../public/imageIcon.jpg";
   isModal.value = false;
 };
 
@@ -376,43 +393,28 @@ const errors = ref({
   name: "",
   price: "",
   picture: "",
-  quantity: "",
-  des: "",
+  namXuatBan: "",
+  nxb: "",
 });
 
-const validateName = () => {
-  errors.value.name = tenSach.value.trim() ? "" : "Tên bắt buộc nhập";
-};
-
-const validateDes = () => {
-  errors.value.des = idNxb.value.trim() ? "" : "Mô tả bắt buộc nhập";
-};
-
-const validatePrice = () => {
+const handleValidate = () => {
+  errors.value.name = tenSach.value.trim() ? "" : "Vui lòng nhập tên sách";
+  errors.value.nxb = idNxb.value.trim() ? "" : "Vui lòng chọn nhà xuất bản";
   if (donGia.value <= 0) {
     errors.value.price = "Giá phải là số nguyên dương";
   } else {
     errors.value.price = "";
   }
-};
-
-const validateQuantyti = () => {
   if (isNaN(soQuyen.value) || soQuyen.value <= 0) {
-    errors.value.quantity = "Số lượng phải là số dương";
+    errors.value.NamXuatBan = "Số lượng phải là số dương";
   } else {
-    errors.value.quantity = "";
+    errors.value.NamXuatBan = "";
   }
 };
 
 const handleOk = () => {
-  validateName();
-  validatePrice();
-  // validatePicture();
-  validateQuantyti();
-  validateDes();
-
+  handleValidate();
   const isValid = Object.values(errors.value).every((error) => !error);
-
   if (isValid) {
     const formData = new FormData();
     formData.append("image", image.value);
@@ -421,9 +423,8 @@ const handleOk = () => {
     formData.append("soQuyen", soQuyen.value);
     formData.append("namXuatBan", namXuatBan.value);
     formData.append("idNxb", idNxb.value);
-
     axios
-      .post("http://localhost:8082/product", formData)
+      .post("http://localhost:8082/book", formData)
       .then((res) => {
         if (res.data.error) {
           toast.error(res.data.error);
@@ -445,7 +446,7 @@ const handleOk = () => {
   }
 };
 // image
-const imageUpload = ref("../../public/Illustration/imageIcon.png");
+const imageUpload = ref("../../public/imageIcon.jpg");
 
 const handleImage = (e) => {
   if (e.target.files && e.target.files[0]) {
@@ -455,8 +456,7 @@ const handleImage = (e) => {
 };
 
 // Modal edit
-const imageUploadEdit = ref("../../public/Illustration/imageIcon.png");
-
+const imageUploadEdit = ref("../../public/imageIcon.jpg");
 const isModalEdit = ref(false);
 const selectedItem = ref(null);
 const imageUpdate = ref();
@@ -464,10 +464,10 @@ const imageUpdate = ref();
 const showModalEdit = (item) => {
   isModalEdit.value = true;
   selectedItem.value = item;
-  imageUploadEdit.value = `http://localhost:8082/${item.HinhHH}`;
+  imageUploadEdit.value = `http://localhost:8082/${item.HinhSach}`;
 };
 
-const handleImageUpate = (e) => {
+const handleImageUpdate = (e) => {
   if (e.target.files && e.target.files[0]) {
     imageUploadEdit.value = URL.createObjectURL(e.target.files[0]);
     imageUpdate.value = e.target.files[0];
@@ -480,22 +480,20 @@ const handleCancelEdit = () => {
 
 const handleOkEdit = () => {
   isModalEdit.value = false;
-
   const formData = new FormData();
   formData.append("image", imageUpdate.value);
   formData.append("tenSach", selectedItem.value.TenSach);
-  formData.append("donGia", selectedItem.value.Gia);
-  formData.append("soQuyen", selectedItem.value.SoLuongHang);
-  formData.append("namXuatBan", selectedItem.value.GhiChu);
-  formData.append("idNxb", selectedItem.value.MoTaHH);
+  formData.append("donGia", selectedItem.value.DonGia);
+  formData.append("soQuyen", selectedItem.value.SoQuyen);
+  formData.append("namXuatBan", selectedItem.value.NamXuatBan);
+  formData.append("idNxb", selectedItem.value.MaNxb._id);
   axios
-    .put("http://localhost:8082/product/" + selectedItem.value._id, formData)
+    .put("http://localhost:8082/book/" + selectedItem.value._id, formData)
     .then((res) => {
       if (res.data.error) {
         toast.error(res.data.error);
       } else if (res.data.message) {
         handleCancel();
-
         toast.success(res.data.message);
         fetchData();
       }
