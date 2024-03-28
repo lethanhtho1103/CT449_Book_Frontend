@@ -22,6 +22,21 @@
           <div class="col d-flex">
             <div class="cardInfo">
               <div class="leftCard">
+                <div class="iconCard" style="background-color: #e9a4a4">
+                  <i class="fa-solid fa-ban" style="color: #d50d0d"></i>
+                </div>
+              </div>
+              <div class="rightCard">
+                <div class="numberCard">
+                  {{ totalDenied }}
+                </div>
+                <div class="nameCard">Đơn mượn đã hủy</div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex">
+            <div class="cardInfo">
+              <div class="leftCard">
                 <div class="iconCard" style="background-color: #cbe2ff">
                   <i
                     class="fa-solid fa-hourglass-half"
@@ -144,10 +159,10 @@ import { toast } from "vue3-toastify";
 import moment from "moment";
 
 const listRents = ref([]);
-const trangThai = ref("");
 
 const totalCustomer = ref("");
 const totalOrder = ref("");
+const totalDenied = ref("");
 const totalPending = ref("");
 const totalStaff = ref("");
 
@@ -155,7 +170,7 @@ const isLogin = localStorage.getItem("isLogin");
 
 const fetchData = () => {
   axios
-    .get("http://localhost:8082/rent/W")
+    .get("http://localhost:8082/rent?trangThai=W")
     .then((res) => {
       listRents.value = res.data;
       console.log(listRents.value);
@@ -189,21 +204,29 @@ const dashBoard = () => {
       totalCustomer.value = res.data.user;
       totalStaff.value = res.data.staff;
       totalOrder.value = res.data.rent.length;
+      totalDenied.value = res.data.rentDenied.length;
       totalPending.value = res.data.rentWaiting.length;
     })
     .catch((err) => console.log(err));
 };
+
 dashBoard();
 
 const formatDateTime = (dateTime) => {
   return moment(dateTime).format("DD-MM-YYYY HH:mm:ss");
 };
 
-const handleAccess = (order) => {
-  trangThai.value = "A";
+const handleAccess = (rent) => {
   axios
-    .put("http://localhost:8082/rent/" + order._id, {
-      trangThai: trangThai.value,
+    .put("http://localhost:8082/rent/" + rent._id, {
+      trangThai: "A",
+      thanhTien: tinhTien(
+        rent.NgayTra,
+        rent.NgayMuon,
+        rent.SoLuong,
+        rent.MaSach.DonGia
+      ),
+      traSach: "N",
     })
     .then((res) => {
       console.log(res);
@@ -217,12 +240,16 @@ const handleAccess = (order) => {
     })
     .catch((err) => console.log(err));
 };
-
-const handleDenied = (order) => {
-  trangThai.value = "D";
+const handleDenied = (rent) => {
   axios
-    .put("http://localhost:8082/rent/" + order._id, {
-      trangThai: trangThai.value,
+    .put("http://localhost:8082/rent/" + rent._id, {
+      trangThai: "D",
+      thanhTien: tinhTien(
+        rent.NgayTra,
+        rent.NgayMuon,
+        rent.SoLuong,
+        rent.MaSach.DonGia
+      ),
     })
     .then((res) => {
       console.log(res);
