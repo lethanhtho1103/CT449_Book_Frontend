@@ -121,18 +121,11 @@
                   )
                 }}
               </td>
-              <!-- <td>
-                <input
-                  class="inputDate"
-                  type="datetime-local"
-                  v-model="rent.NgayGH"
-                />
-              </td> -->
               <td class="d-flex justify-content-center">
-                <button @click="handleAccess(rent)" class="accept">
+                <button @click="showModalAccess(rent, index)" class="accept">
                   <i class="fa-solid fa-check"></i>
                 </button>
-                <button class="reject" @click="handleDenied(rent)">
+                <button class="reject" @click="showModalDeny(rent, index)">
                   <i class="fa-solid fa-x"></i>
                 </button>
               </td>
@@ -140,6 +133,30 @@
           </tbody>
         </table>
       </div>
+      <a-modal
+        style="top: 40px"
+        v-model:open="isModalAccess"
+        title="Xác nhận duyệt đơn mượn"
+        @ok="handleOkAccess()"
+        :ok-button-props="okButtonAccess"
+        @cancel="handleCancelAccess"
+        cancelText="Đóng"
+        okText="Xác nhận"
+      >
+        <p>Bạn có chắc muốn duyệt đơn mượn số: {{ indexSelected + 1 }}</p>
+      </a-modal>
+      <a-modal
+        style="top: 40px"
+        v-model:open="isModalDeny"
+        title="Xác nhận hủy đơn mượn"
+        @ok="handleOkDeny()"
+        :ok-button-props="okButtonDeny"
+        @cancel="handleCancelDeny"
+        cancelText="Đóng"
+        okText="Xác nhận"
+      >
+        <p>Bạn có chắc muốn hủy đơn mượn số: {{ indexSelected + 1 }}</p>
+      </a-modal>
     </div>
   </div>
   <div v-else class="denied">
@@ -159,39 +176,51 @@ import { toast } from "vue3-toastify";
 import moment from "moment";
 
 const listRents = ref([]);
-
 const totalCustomer = ref("");
 const totalOrder = ref("");
 const totalDenied = ref("");
 const totalPending = ref("");
 const totalStaff = ref("");
-
+const isModalAccess = ref(false);
+const isModalDeny = ref(false);
 const isLogin = localStorage.getItem("isLogin");
+const rentChoice = ref(null);
+const indexSelected = ref(null);
+
+const showModalAccess = (rent, index) => {
+  isModalAccess.value = true;
+  rentChoice.value = rent;
+  indexSelected.value = index;
+};
+const showModalDeny = (rent) => {
+  isModalDeny.value = true;
+  rentChoice.value = rent;
+};
+const handleCancelAccess = () => {
+  isModalAccess.value = false;
+};
+const handleCancelDeny = () => {
+  isModalDeny.value = false;
+};
 
 const fetchData = () => {
   axios
     .get("http://localhost:8082/rent?trangThai=W")
     .then((res) => {
       listRents.value = res.data;
-      console.log(listRents.value);
     })
     .catch((err) => console.log(err));
 };
-
 fetchData();
 
 function tinhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
-  // Tạo đối tượng Date từ chuỗi ngày bắt đầu và kết thúc
   var startDate = new Date(ngayBatDau);
   var endDate = new Date(ngayKetThuc);
 
-  // Chuyển ngày thành milliseconds
-  var oneDay = 24 * 60 * 60 * 1000; // Số milliseconds trong 1 ngày
+  var oneDay = 24 * 60 * 60 * 1000;
 
-  // Tính số ngày giữa hai ngày
   var soNgay = Math.round(Math.abs((startDate - endDate) / oneDay));
 
-  // Tính tổng tiền
   var tongTien = soQuyen * giaPerQuyen * soNgay;
 
   return tongTien;
@@ -209,30 +238,31 @@ const dashBoard = () => {
     })
     .catch((err) => console.log(err));
 };
-
 dashBoard();
 
 const formatDateTime = (dateTime) => {
   return moment(dateTime).format("DD-MM-YYYY HH:mm:ss");
 };
 
-const handleAccess = (rent) => {
+const handleOkAccess = () => {
+  console.log(rentChoice.value._id);
   axios
-    .put("http://localhost:8082/rent/" + rent._id, {
+    .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "A",
       thanhTien: tinhTien(
-        rent.NgayTra,
-        rent.NgayMuon,
-        rent.SoLuong,
-        rent.MaSach.DonGia
+        rentChoice.value.NgayTra,
+        rentChoice.value.NgayMuon,
+        rentChoice.value.SoLuong,
+        rentChoice.value.MaSach.DonGia
       ),
-      traSach: "N",
+      traSach: "W",
     })
     .then((res) => {
       console.log(res);
       if (res.data.error) {
         toast.error(res.data.error);
       } else {
+        handleCancelAccess();
         fetchData();
         dashBoard();
         toast.success("Đã duyệt đơn mượn thành công.");
@@ -240,28 +270,41 @@ const handleAccess = (rent) => {
     })
     .catch((err) => console.log(err));
 };
-const handleDenied = (rent) => {
+
+const handleOkDeny = () => {
   axios
-    .put("http://localhost:8082/rent/" + rent._id, {
+    .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "D",
       thanhTien: tinhTien(
-        rent.NgayTra,
-        rent.NgayMuon,
-        rent.SoLuong,
-        rent.MaSach.DonGia
+        rentChoice.value.NgayTra,
+        rentChoice.value.NgayMuon,
+        rentChoice.value.SoLuong,
+        rentChoice.value.MaSach.DonGia
       ),
     })
     .then((res) => {
-      console.log(res);
       if (res.data.error) {
         toast.error(res.data.error);
       } else {
+        handleCancelDeny();
         fetchData();
         dashBoard();
         toast.success("Đã từ chối đơn mượn thành công.");
       }
     })
     .catch((err) => console.log(err));
+};
+
+const okButtonDeny = {
+  style: {
+    background: "red",
+  },
+};
+
+const okButtonAccess = {
+  style: {
+    background: "rgb(8, 172, 8)",
+  },
 };
 </script>
 <style lang="scss" scoped>
