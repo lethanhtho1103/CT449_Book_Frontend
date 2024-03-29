@@ -7,7 +7,7 @@
   <nav class="navbar bg-body-tertiary">
     <div class="title">
       <div class="logo">
-        <img src="../../assets/logo.png" alt="Vue" />
+        <img src="../../assets/logo.jpg" alt="Vue" />
         <span class="titleWeb">LTT<span class="text-dark">BOOKS</span></span>
       </div>
     </div>

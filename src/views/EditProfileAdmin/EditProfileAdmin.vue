@@ -54,7 +54,7 @@
                   <hr />
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="lableGroup">Phone</p>
+                      <p class="lableGroup">Số điện thoại</p>
                     </div>
                     <div class="col-sm-9">
                       <div class="input-group">

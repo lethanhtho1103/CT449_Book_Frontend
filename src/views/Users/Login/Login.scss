@@ -3,29 +3,38 @@
 }
 
 .loginForm {
-  background-color: #f9f9f9;
+  background-color: #f1e9e9af;
+  margin-top: 40px;
   border: none;
-  box-shadow: 0px 15px 15px #dfd8d8;
-  border-radius: 16px;
-  overflow: hidden;
+  box-shadow: 0px 20px 20px #dfd8d8;
+  border-radius: 10px;
 }
 
-.titleWeb {
-  width: 100%;
-  font-size: 34px;
-  text-align: center;
-  font-weight: bold;
+.logo {
+  margin-bottom: 1rem;
+
+  img {
+    width: 50px;
+  }
+
+  .titleWeb {
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    font-size: 34px;
+    transform: translateY(2px);
+    color: var(--green);
+    font-weight: bold;
+  }
 }
 
 .desLogin {
-  font-size: 1.2rem;
-  text-align: center;
+  font-weight: bold;
 }
 
 .group {
   display: grid;
   grid-template-columns: 30px auto;
-  background-color: rgb(63 63 102 / 60%);
+  background-color: green;
   border-radius: 10px;
   color: #fff;
   margin: 20px 0;
@@ -58,7 +67,7 @@
 .group2 {
   display: grid;
   grid-template-columns: 30px auto 30px;
-  background-color: rgb(63 63 102 / 60%);
+  background-color: green;
   border-radius: 10px;
   color: #fff;
   margin: 20px 0;
@@ -89,23 +98,16 @@
 
   .iconPassword {
     margin-top: 5px;
-    cursor: pointer;
   }
 }
 
-.selectGroup {
-  background-color: transparent;
-  padding: 7px;
-  border: none;
-  outline: none;
-}
-
-.selectGroup option {
-  background-color: var(--purple);
-}
-
 .btnPay {
-  background-color: #5050b2;
+  background-image: linear-gradient(
+    to right,
+    var(--green) 0%,
+    #42aa61 51%,
+    #d8e41e 100%
+  );
   margin: 10px 0px;
   padding: 8px;
   text-align: center;
@@ -117,22 +119,32 @@
   display: block;
   font-size: 18px;
   width: 100%;
-  font-weight: 600;
 }
 
 .btnPay:hover {
-  opacity: 0.9;
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
-.wrapper {
+.imageLogin {
+  max-width: 350px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+
+.toggle {
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #5050b2;
-  border-radius: 0px 150px 100px 0;
-  background: linear-gradient(to right, #7e8cdf, #5050b2);
+  background-color: #512da8;
+  border-radius: 150px 0px 0px 100px;
+  background: linear-gradient(to right, #5c6bc0, #512da8);
   color: #fff;
   padding: 0 30px;
   text-align: center;
@@ -146,13 +158,11 @@
     font-size: 1rem;
     font-weight: 500;
   }
-  .btn-login {
-    margin-top: 4px;
-    padding: 8px 28px;
+  .btn-register {
+    padding: 8px 18px;
     border: 1px solid #fff;
     color: #fff;
     text-transform: uppercase;
     border-radius: 8px;
-    font-weight: 600;
   }
 }

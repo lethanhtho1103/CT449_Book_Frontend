@@ -9,12 +9,19 @@
                 <div class="col-md-6 col-lg-6 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
                     <form @submit.prevent="login">
-                      <div class="d-flex align-items-center mb-2">
-                        <div class="titleWeb">Sign In</div>
+                      <div class="d-flex align-items-center mb-3 pb-1">
+                        <div class="logo">
+                          <img src="" alt="" />
+                          <span class="titleWeb"
+                            >LTT<span class="text-dark">Books</span></span
+                          >
+                        </div>
                       </div>
-                      <div class="fw-normal desLogin">
-                        Log in as a store employee
+
+                      <div class="fw-normal pb-2 desLogin">
+                        Đăng nhập bằng tài khoản của bạn
                       </div>
+
                       <div class="group">
                         <label for="phone"
                           ><i class="fa-solid fa-phone iconForm"></i
@@ -32,6 +39,7 @@
                           minlength="9"
                         />
                       </div>
+
                       <div class="group2">
                         <label for="password"
                           ><i class="fa-solid fa-lock iconForm"></i
@@ -47,35 +55,38 @@
                           required
                         />
                         <div @click="toggleShowPassword" class="iconPassword">
-                          <div v-if="showPassword">
-                            <i class="fa-solid fa-eye"></i>
-                          </div>
-                          <div v-else>
-                            <i class="fa-solid fa-eye-slash"></i>
-                          </div>
+                          <i
+                            :class="
+                              showPassword
+                                ? 'fa-solid fa-eye'
+                                : 'fa-solid fa-eye-slash'
+                            "
+                          ></i>
                         </div>
                       </div>
-                      <a class="small text-muted text-center d-block" href="#!"
-                        >Forgot Your Password?</a
-                      >
                       <div class="pt-1 mb-4">
-                        <button class="btnPay">SIGN IN</button>
+                        <button class="btnPay">Login</button>
                       </div>
+
+                      <a class="small text-muted" href="#!">Quên mật khẩu?</a>
+                      <p class="mb-1 pb-lg-2" style="color: #393f81">
+                        Bạn chưa có tài khoản
+                        <router-link to="/register" class="button">
+                          <span style="color: #393f81">Register here</span>
+                        </router-link>
+                      </p>
                     </form>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-6">
-                  <div class="wrapper">
+                  <div class="toggle">
                     <div class="title">Hello, Friend!</div>
                     <p>
                       Register with your personal details to use all of site
                       features.
                     </p>
-                    <router-link
-                      to="/admin/register"
-                      class="button btn-register"
-                    >
-                      <span>SIGN UP</span>
+                    <router-link to="/register" class="button btn-register">
+                      <span>Register</span>
                     </router-link>
                   </div>
                 </div>
@@ -110,29 +121,40 @@ const login = () => {
     password: password.value,
   };
   axios
-    .post("http://localhost:8082/authentication/login/staff", formData)
+    .post("http://localhost:3000/authentication/login", formData)
     .then((res) => {
       if (res.data.error) {
         toast.error(res.data.error);
       } else {
         const ID_User = res.data.data._id;
-        const Username = res.data.data.HoTenNv;
-        const Avatar = res.data.data.Avatar;
-        const Position = res.data.data.ChucVu;
-        const Address = res.data.data.DiaChi;
+        const Username = res.data.data.HoTenKH;
+        const Avatar = res.data.data.AnhDaiDien;
         const isLogin = true;
+
         localStorage.setItem("ID_User", ID_User);
         localStorage.setItem("Username", Username);
         localStorage.setItem("Avatar", Avatar);
-        localStorage.setItem("Position", Position);
-        localStorage.setItem("Address", Address);
         localStorage.setItem("isLogin", isLogin);
-        router.push("/admin/home");
+
+        router.push("/");
       }
     });
 };
+
+// const getUserInfo = () => {
+// userStore.id = res.data.data._id
+// userStore.username = res.data.data.HoTenKH
+// userStore.avatar = res.data.data.AnhDaiDien
+
+//     console.log('ID_nguoi dung:', userStore.id);
+//     console.log('Username:', userStore.username);
+//     console.log('Avatar:', userStore.avatar);
+// };
+// const clearUserInfo = () => {
+//     userStore.clearUser();
+// };
 </script>
 
 <style lang="scss" scoped>
-@import "./LoginAdmin.scss";
+@import "./Login.scss";
 </style>

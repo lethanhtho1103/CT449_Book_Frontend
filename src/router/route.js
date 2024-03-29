@@ -17,6 +17,7 @@ import HistoryAdmin from "@/views/HistoryAdmin/HistoryAdmin.vue";
 
 //router User
 import Home from "@/views/Users/Home/Home.vue";
+import Login from "@/views/Users/Login/Login.vue";
 
 const routes = [
   // User
@@ -25,6 +26,13 @@ const routes = [
     component: Home,
     meta: {
       layout: DefaultLayout,
+    },
+  },
+  {
+    path: "/login",
+    component: Login,
+    meta: {
+      layout: AuthLayout,
     },
   },
   // router Admin

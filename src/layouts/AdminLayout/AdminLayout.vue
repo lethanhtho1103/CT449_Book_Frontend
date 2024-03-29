@@ -15,6 +15,6 @@ import AppHeaderAdmin from "../../components/AppHeaderAdmin/AppHeaderAdmin.vue";
 <style scoped>
 .scrollable {
   overflow-y: auto;
-  min-height: calc(100vh - 72px);
+  max-height: calc(100vh - 72px);
 }
 </style>

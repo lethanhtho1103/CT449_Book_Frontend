@@ -6,25 +6,29 @@
           <div class="col col-xl-10">
             <div class="card loginForm">
               <div class="row g-0">
+                <div class="col-md-6 col-lg-6">
+                  <div class="wrapper">
+                    <div class="title">Welcome Back!</div>
+                    <p>
+                      Enter your personal details to use all of site features.
+                    </p>
+                    <router-link to="/admin/login" class="button btn-login">
+                      <span>SIGN IN</span>
+                    </router-link>
+                  </div>
+                </div>
                 <div class="col-md-6 col-lg-6 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-4 text-black">
                     <form
                       @submit.prevent="register"
                       enctype="multipart/form-data"
                     >
-                      <div class="d-flex align-items-center mb-3 pb-1">
-                        <div class="logo">
-                          <img src="../../assets/logo.png" alt="" />
-                          <span class="titleWeb"
-                            >LTT<span class="text-dark">Books</span></span
-                          >
-                        </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <div class="titleWeb">Create account</div>
                       </div>
-
-                      <div class="fw-normal pb-2 desLogin">
-                        Đăng ký tài khoản nhân viên cửa hàng
+                      <div class="fw-normal desLogin">
+                        Register for a store employee account
                       </div>
-
                       <div class="group">
                         <label for="phone"
                           ><i class="fa-solid fa-phone iconForm"></i
@@ -130,23 +134,10 @@
                         />
                       </div>
                       <div class="pt-1 mb-4">
-                        <button class="btnPay" type="submit">Register</button>
+                        <button class="btnPay" type="submit">SIGN UP</button>
                       </div>
-                      <p class="mb-1 pb-lg-2" style="color: #393f81">
-                        Bạn đã có tài khoản?
-                        <router-link to="/admin/login" class="button">
-                          <span style="color: #393f81">Login here</span>
-                        </router-link>
-                      </p>
                     </form>
                   </div>
-                </div>
-                <div class="col-md-6 col-lg-6 d-none d-md-block m-auto">
-                  <img
-                    src="../../assets/bg-form.png"
-                    alt="login form"
-                    class="imageLogin"
-                  />
                 </div>
               </div>
             </div>
