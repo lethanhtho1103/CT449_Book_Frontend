@@ -50,7 +50,7 @@
             <p class="ml-3 d-inline">Địa chỉ: {{ rented.MaDocGia.DiaChi }}</p>
           </div>
           <div class="d-flex">
-            <h5>Chi tiết đơn mượn:</h5>
+            <h5 style="font-size: 1.2rem">Chi tiết đơn mượn:</h5>
             <a-modal
               style="top: 40px"
               v-model:open="isModalDelete"
@@ -106,7 +106,19 @@
                 <td>{{ rented.MaSach.TenSach }}</td>
                 <td>{{ rented.SoLuong }}</td>
                 <td>{{ rented.MaSach.DonGia }} VND</td>
-                <td>
+                <td
+                  :style="`${
+                    rented.TraSach === 'Y'
+                      ? 'color: green; font-weight: bold;'
+                      : rented.TraSach === 'N'
+                      ? 'color: red; font-weight: bold;'
+                      : rented.TraSach === 'W'
+                      ? 'color: blue; font-weight: bold;'
+                      : rented.TraSach === 'D'
+                      ? 'color: orange; font-weight: bold;'
+                      : 'color: black; font-weight: bold;'
+                  }`"
+                >
                   {{
                     rented.TraSach === "Y"
                       ? "Đã trả"

@@ -202,7 +202,7 @@
         title="Chỉnh sửa sách"
         @ok="handleOkEdit"
         @cancel="handleCancelEdit"
-        okText="Cập nhật sách"
+        okText="Cập nhật"
         cancelText="Đóng"
       >
         <form action="" enctype="multipart/form-data">
@@ -211,7 +211,8 @@
               <img class="imageLeftModal" :src="imageUploadEdit" alt="" />
               <div class="btnAddImage d-flex">
                 <label for="image"
-                  ><i class="fa-solid fa-image iconModal"></i>Thêm ảnh</label
+                  ><i class="fa-solid fa-image iconModal"></i>Cập nhật
+                  ảnh</label
                 >
                 <input
                   type="file"

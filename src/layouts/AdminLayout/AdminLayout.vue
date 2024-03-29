@@ -3,7 +3,7 @@
     <SideBarAdmin />
     <div class="d-block w-100">
       <AppHeaderAdmin />
-      <router-view />
+      <div class="scrollable"><router-view /></div>
     </div>
   </div>
 </template>
@@ -11,3 +11,10 @@
 import SideBarAdmin from "../../components/SideBarAdmin/SideBarAdmin.vue";
 import AppHeaderAdmin from "../../components/AppHeaderAdmin/AppHeaderAdmin.vue";
 </script>
+
+<style scoped>
+.scrollable {
+  overflow-y: auto;
+  min-height: calc(100vh - 72px);
+}
+</style>
