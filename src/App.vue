@@ -17,6 +17,7 @@ import "vue3-toastify/dist/index.css";
   --dark-alt: #334155;
   --light: #f1f5f9;
   --purple: #4747a1;
+  --green: #4bc96d;
   --sidebar-width: 230px;
 }
 

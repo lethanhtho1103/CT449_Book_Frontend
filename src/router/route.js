@@ -2,11 +2,12 @@ import { createWebHistory, createRouter } from "vue-router";
 
 // Layouts
 import AdminLayout from "../layouts/AdminLayout/AdminLayout.vue";
+import DefaultLayout from "@/layouts/DefaultLayout/DefaultLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout/AuthLayout.vue";
 
 // router Admin
 import Admin from "../views/Admin/Admin.vue";
 import LoginAdmin from "@/views/LoginAdmin/LoginAdmin.vue";
-import AuthLayout from "@/layouts/AuthLayout/AuthLayout.vue";
 import RegisterAdmin from "@/views/RegisterAdmin/RegisterAdmin.vue";
 import AboutAdmin from "@/views/AboutAdmin/AboutAdmin.vue";
 import InfoAdmin from "@/views/InfoAdmin/InfoAdmin.vue";
@@ -14,7 +15,18 @@ import EditProfileAdmin from "@/views/EditProfileAdmin/EditProfileAdmin.vue";
 import Customer from "@/views/Customer/Customer.vue";
 import HistoryAdmin from "@/views/HistoryAdmin/HistoryAdmin.vue";
 
+//router User
+import Home from "@/views/Users/Home/Home.vue";
+
 const routes = [
+  // User
+  {
+    path: "/",
+    component: Home,
+    meta: {
+      layout: DefaultLayout,
+    },
+  },
   // router Admin
   {
     path: "/admin/login",

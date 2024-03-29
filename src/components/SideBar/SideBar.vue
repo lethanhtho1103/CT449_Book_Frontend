@@ -2,9 +2,9 @@
   <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
     <div class="logo">
       <img :src="logoURL" alt="Vue" />
-
       <span class="titleWeb">LTT<span class="text-dark">Books</span></span>
     </div>
+
     <div class="menu-toggle-wrap">
       <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons"
@@ -12,33 +12,36 @@
         ></span>
       </button>
     </div>
+
     <h3>Menu</h3>
     <div class="menu">
-      <router-link to="/admin/home" class="button">
+      <router-link to="/" class="button">
         <span class="material-icons"
           ><i class="fa-solid fa-house icon"></i
         ></span>
         <span class="text">Home</span>
       </router-link>
-      <router-link to="/admin/about" class="button">
+      <router-link to="/about" class="button">
         <span class="material-icons"
           ><i class="fa-solid fa-bell-concierge"></i
         ></span>
         <span class="text">Menu</span>
       </router-link>
-      <router-link to="/admin/customer" class="button">
-        <span class="material-icons"><i class="fa-solid fa-users"></i></span>
-        <span class="text">Customer</span>
+      <router-link to="/order" class="button">
+        <span class="material-icons"
+          ><i class="fa-solid fa-bookmark icon"></i
+        ></span>
+        <span class="text">Oders</span>
       </router-link>
-      <router-link to="/admin/history" class="button">
+      <router-link to="/history" class="button">
         <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
         <span class="text">History</span>
       </router-link>
-      <router-link v-if="isLogin" to="/admin/info" class="button">
+      <router-link v-if="isLogin" to="/profile" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
         <span class="text">Profile</span>
       </router-link>
-      <router-link v-else to="/admin/login" class="button">
+      <router-link v-else to="/login" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
         <span class="text">Profile</span>
       </router-link>
@@ -67,10 +70,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect, onMounted } from "vue";
 import logoURL from "../../assets/logo.jpg";
 import { Modal, Button } from "ant-design-vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
 
 const router = useRouter();
 
@@ -101,17 +105,35 @@ const handleOk = () => {
   localStorage.removeItem("Avatar");
   localStorage.removeItem("ID_User");
   localStorage.removeItem("Username");
-  localStorage.removeItem("Position");
-  localStorage.removeItem("Address");
   isModal.value = false;
-  router.push("/admin/login");
+  router.push("/login");
 };
 
 const handleCancel = () => {
   isModal.value = false;
 };
+
+// const ID_User = localStorage.getItem('ID_User');
+// const gioHang = ref([]);
+
+// const capNhatGioHang = () => {
+//     axios.get('http://localhost:3000/cart/' + ID_User)
+//         .then(res => {
+//             console.log("So luong", res.data.length)
+//             gioHang.value = res.data
+//         })
+// }
+
+// onMounted(() => {
+//     capNhatGioHang();
+// });
+
+// watchEffect(() => {
+//     const tongSoLuong = gioHang.value.reduce((total, item) => total + item.SoLuong, 0);
+//     console.log('Tổng số lượng trong giỏ hàng:', tongSoLuong);
+// })
 </script>
 
 <style lang="scss" scoped>
-@import "SideBarAdmin.scss";
+@import "SideBar.scss";
 </style>

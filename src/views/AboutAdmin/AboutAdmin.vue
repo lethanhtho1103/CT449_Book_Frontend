@@ -63,7 +63,7 @@
                 :style="`${isLogin ? '' : 'display: none'}`"
                 class="edit"
               >
-                <i class="fa-solid fa-pen-to-square iconEdit"></i>
+                <i class="fa-solid fa-pen"></i>
                 Sửa
               </button>
               <button
@@ -243,6 +243,7 @@
                 <input
                   type="number"
                   class="inputGroup"
+                  min="1"
                   v-model="selectedItem.DonGia"
                   name="donGia"
                   id=""
@@ -256,6 +257,7 @@
                 <span>Số quyển:</span>
                 <input
                   type="number"
+                  min="1"
                   class="inputGroup"
                   v-model="selectedItem.SoQuyen"
                   name="soQuyen"
@@ -480,6 +482,7 @@ const handleCancelEdit = () => {
 };
 
 const handleOkEdit = () => {
+  // handleValidate();
   isModalEdit.value = false;
   const formData = new FormData();
   formData.append("image", imageUpdate.value);
