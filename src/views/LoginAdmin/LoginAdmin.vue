@@ -5,7 +5,7 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
             <div class="card loginForm">
-              <div class="row g-0">
+              <div class="row g-0" style="min-height: 500px">
                 <div class="col-md-6 col-lg-6 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
                     <form @submit.prevent="login">
@@ -103,6 +103,13 @@ const showPassword = ref(false);
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 };
+
+const isLoggedIn = () => {
+  if (localStorage.getItem("isLogin") === "true") {
+    router.push("/admin/home");
+  }
+};
+isLoggedIn();
 
 const login = () => {
   const formData = {

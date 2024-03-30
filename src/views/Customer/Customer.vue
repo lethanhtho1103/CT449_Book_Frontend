@@ -1,5 +1,5 @@
 <template>
-  <div class="containPage">
+  <div class="containPage" v-if="isLogin">
     <h2>Danh sách người dùng</h2>
     <div class="contentPage" :style="`${isLogin ? '' : 'display: none'}`">
       <a-tabs v-model:activeKey="activeKey">
@@ -15,6 +15,9 @@
         </a-tab-pane>
       </a-tabs>
     </div>
+  </div>
+  <div v-else class="denied">
+    <h3 class="text-center mt-5">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
   </div>
 </template>
 

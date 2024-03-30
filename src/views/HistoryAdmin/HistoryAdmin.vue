@@ -1,5 +1,5 @@
 <template>
-  <div class="containPage">
+  <div class="containPage" v-if="isLogin">
     <h2>Đơn mượn đã duyệt</h2>
     <div class="contentPage" :style="`${isLogin ? '' : 'display: none'}`">
       <div class="list-group">
@@ -160,6 +160,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div v-else class="denied">
+    <h3 class="text-center mt-5">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
   </div>
 </template>
 

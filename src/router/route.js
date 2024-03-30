@@ -4,6 +4,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import AdminLayout from "../layouts/AdminLayout/AdminLayout.vue";
 import DefaultLayout from "@/layouts/DefaultLayout/DefaultLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout.vue";
+import AuthLayoutAdmin from "@/layouts/AuthLayoutAdmin/AuthLayoutAdmin.vue";
 
 // router Admin
 import Admin from "../views/Admin/Admin.vue";
@@ -18,6 +19,7 @@ import HistoryAdmin from "@/views/HistoryAdmin/HistoryAdmin.vue";
 //router User
 import Home from "@/views/Users/Home/Home.vue";
 import Login from "@/views/Users/Login/Login.vue";
+import Register from "@/views/Users/Register/Register.vue";
 
 const routes = [
   // User
@@ -35,19 +37,26 @@ const routes = [
       layout: AuthLayout,
     },
   },
+  {
+    path: "/register",
+    component: Register,
+    meta: {
+      layout: AuthLayout,
+    },
+  },
   // router Admin
   {
     path: "/admin/login",
     component: LoginAdmin,
     meta: {
-      layout: AuthLayout,
+      layout: AuthLayoutAdmin,
     },
   },
   {
     path: "/admin/register",
     component: RegisterAdmin,
     meta: {
-      layout: AuthLayout,
+      layout: AuthLayoutAdmin,
     },
   },
   {

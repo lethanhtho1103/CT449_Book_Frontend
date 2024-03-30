@@ -2,7 +2,7 @@
   <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
     <div class="logo">
       <img :src="logoURL" alt="Vue" />
-      <span class="titleWeb">LTT<span class="text-dark">Books</span></span>
+      <span class="titleWeb">TT<span class="text-dark">Store</span></span>
     </div>
 
     <div class="menu-toggle-wrap">
@@ -101,10 +101,13 @@ const showModal = () => {
 };
 
 const handleOk = () => {
-  localStorage.removeItem("isLogin");
-  localStorage.removeItem("Avatar");
-  localStorage.removeItem("ID_User");
-  localStorage.removeItem("Username");
+  localStorage.removeItem("ID_DG");
+  localStorage.removeItem("TenDG");
+  localStorage.removeItem("AvatarDG");
+  localStorage.removeItem("DiaChiDG");
+  localStorage.removeItem("NgaySinhDG");
+  localStorage.removeItem("DienThoaiDG");
+  localStorage.removeItem("isLoginDG");
   isModal.value = false;
   router.push("/login");
 };

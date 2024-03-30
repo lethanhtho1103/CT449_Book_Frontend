@@ -160,12 +160,7 @@
     </div>
   </div>
   <div v-else class="denied">
-    <img
-      class="d-flex mt-5 ml-auto mr-auto mb-5"
-      src="../../../public/imageIcon.jpg"
-      alt=""
-    />
-    <h3 class="text-center">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
+    <h3 class="text-center mt-5">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
   </div>
 </template>
 

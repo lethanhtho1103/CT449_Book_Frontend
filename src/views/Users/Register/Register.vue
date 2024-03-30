@@ -12,7 +12,7 @@
                     <p>
                       Enter your personal details to use all of site features.
                     </p>
-                    <router-link to="/admin/login" class="button btn-login">
+                    <router-link to="/login" class="button btn-login">
                       <span>SIGN IN</span>
                     </router-link>
                   </div>
@@ -59,7 +59,52 @@
                           required
                         />
                       </div>
+                      <div class="group">
+                        <label for="birth"
+                          ><i class="fa-solid fa-user iconForm"></i
+                        ></label>
+                        <input
+                          type="date"
+                          id="birth"
+                          name="birth"
+                          v-model="birth"
+                          class="groupInput"
+                          autocomplete="off"
+                          required
+                        />
+                      </div>
+                      <div class="group">
+                        <label for="sex"
+                          ><i class="fa-solid fa-user-tie iconForm"></i
+                        ></label>
+                        <select
+                          class="selectGroup"
+                          v-model="sex"
+                          name="sex"
+                          id="sex"
+                          required
+                        >
+                          <option value="">Giới tính</option>
+                          <option value="Nam">Nam</option>
+                          <option value="Nữ">Nữ</option>
+                        </select>
+                      </div>
 
+                      <div class="group">
+                        <label for="address"
+                          ><i class="fa-solid fa-map iconForm"></i
+                        ></label>
+                        <input
+                          type="text"
+                          id="address"
+                          name="address"
+                          v-model="address"
+                          class="groupInput"
+                          autocomplete="off"
+                          placeholder="Nhập địa chỉ"
+                          required
+                        />
+                      </div>
                       <div class="group2">
                         <label for="password"
                           ><i class="fa-solid fa-lock iconForm"></i
@@ -83,40 +128,6 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="group">
-                        <label for="position"
-                          ><i class="fa-solid fa-user-tie iconForm"></i
-                        ></label>
-                        <select
-                          class="selectGroup"
-                          v-model="position"
-                          name="postion"
-                          id="position"
-                          required
-                        >
-                          <option value="">Chọn chức vụ</option>
-                          <option value="Quản lý">Quản lý</option>
-                          <option value="Nhân viên">Nhân viên</option>
-                        </select>
-                      </div>
-
-                      <div class="group">
-                        <label for="address"
-                          ><i class="fa-solid fa-map iconForm"></i
-                        ></label>
-                        <input
-                          type="text"
-                          id="address"
-                          name="address"
-                          v-model="address"
-                          class="groupInput"
-                          autocomplete="off"
-                          placeholder="Nhập địa chỉ"
-                          required
-                        />
-                      </div>
-
                       <div class="group">
                         <label for="avatar"
                           ><i class="fa-solid fa-image iconForm"></i
@@ -160,17 +171,15 @@ const phone = ref("");
 const username = ref("");
 const password = ref("");
 const address = ref("");
-const position = ref("");
+const sex = ref("");
 const avatar = ref(null);
 const showPassword = ref(false);
-
 const isLoggedIn = () => {
-  if (localStorage.getItem("isLogin") === "true") {
-    router.push("/admin/home");
+  if (localStorage.getItem("isLoginDG") === "true") {
+    router.push("/");
   }
 };
 isLoggedIn();
-
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 };
@@ -180,24 +189,25 @@ const handleFileUpload = (e) => {
 };
 const register = async () => {
   const formData = new FormData();
-  formData.append("avatar", avatar.value);
   formData.append("username", username.value);
+  formData.append("birth", birth.value);
+  formData.append("sex", sex.value);
+  formData.append("address", address.value);
   formData.append("phone", phone.value);
   formData.append("password", password.value);
-  formData.append("position", position.value);
-  formData.append("address", address.value);
+  formData.append("avatar", avatar.value);
   axios
-    .post("http://localhost:8082/authentication/register/staff", formData)
+    .post("http://localhost:8082/authentication/register", formData)
     .then((res) => {
       if (res.data.error) {
         toast.error(res.data.error);
       } else {
-        router.push("/admin/login");
+        router.push("/login");
       }
     })
     .catch((err) => console.log(err));
 };
 </script>
 <style lang="scss" scoped>
-@import "./RegisterAdmin.scss";
+@import "./Register.scss";
 </style>

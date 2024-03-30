@@ -1,5 +1,5 @@
 <template>
-  <div class="containPage">
+  <div class="containPage" v-if="isLogin">
     <div class="titlePage">
       <h2>Chỉnh sửa thông tin</h2>
     </div>
@@ -118,6 +118,9 @@
       </section>
     </div>
   </div>
+  <div v-else class="denied">
+    <h3 class="text-center mt-5">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
+  </div>
 </template>
 
 <script setup>
@@ -131,6 +134,7 @@ const password = ref("");
 const phone = ref("");
 const address = ref("");
 const chucvu = ref("");
+const isLogin = localStorage.getItem("isLogin");
 
 const imageUpload = ref(null);
 const imageUploadEdit = ref();

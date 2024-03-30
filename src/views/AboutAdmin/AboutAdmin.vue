@@ -1,5 +1,5 @@
 <template>
-  <div class="containPage">
+  <div class="containPage" v-if="isLogin">
     <div class="titlePage d-flex">
       <div class="groupSearch">
         <input
@@ -314,13 +314,15 @@
       </a-modal>
     </div>
   </div>
+  <div v-else class="denied">
+    <h3 class="text-center mt-5">Vui lòng đăng nhập để xử dụng dịch vụ</h3>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
 import { toast } from "vue3-toastify";
-
 const tenSach = ref("");
 const donGia = ref(1);
 const soQuyen = ref(1);

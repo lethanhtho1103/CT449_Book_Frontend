@@ -105,7 +105,7 @@
 }
 
 .btnPay {
-  background-color: #5050b2;
+  background: linear-gradient(to right, #96c93d, #00b09b);
   margin: 10px 0px;
   padding: 8px;
   text-align: center;
@@ -118,10 +118,11 @@
   font-size: 18px;
   width: 100%;
   font-weight: 600;
+  transition: all ease-in-out 0.3;
 }
 
 .btnPay:hover {
-  opacity: 0.9;
+  background-position: right center;
 }
 
 .wrapper {
@@ -132,7 +133,7 @@
   justify-content: center;
   background-color: #5050b2;
   border-radius: 0px 150px 100px 0;
-  background: linear-gradient(to left, #7e8cdf, #5050b2);
+  background: linear-gradient(to left, #96c93d, #00b09b);
   color: #fff;
   padding: 0 30px;
   text-align: center;

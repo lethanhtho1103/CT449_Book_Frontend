@@ -26,12 +26,7 @@
 
 .infoUser {
   .btnLogin {
-    background-image: linear-gradient(
-      to right,
-      #ff8008 0%,
-      #ffc837 51%,
-      #ff8008 100%
-    );
+    background: linear-gradient(to right, #7e8cdf, #5050b2);
     padding: 10px 20px;
     text-align: center;
     transition: 0.5s;

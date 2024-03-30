@@ -3,38 +3,30 @@
 }
 
 .loginForm {
-  background-color: #f1e9e9af;
+  background-color: #f9f9f9;
   margin-top: 40px;
   border: none;
-  box-shadow: 0px 20px 20px #dfd8d8;
-  border-radius: 10px;
+  box-shadow: 0px 15px 15px #dfd8d8;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.logo {
-  margin-bottom: 1rem;
-
-  img {
-    width: 50px;
-  }
-
-  .titleWeb {
-    transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    font-size: 34px;
-    transform: translateY(2px);
-    color: var(--green);
-    font-weight: bold;
-  }
+.titleWeb {
+  width: 100%;
+  font-size: 34px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .desLogin {
-  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .group {
   display: grid;
   grid-template-columns: 30px auto;
-  background-color: green;
+  background-color: rgb(63 63 102 / 60%);
   border-radius: 10px;
   color: #fff;
   margin: 20px 0;
@@ -67,7 +59,7 @@
 .group2 {
   display: grid;
   grid-template-columns: 30px auto 30px;
-  background-color: green;
+  background-color: rgb(63 63 102 / 60%);
   border-radius: 10px;
   color: #fff;
   margin: 20px 0;
@@ -98,16 +90,14 @@
 
   .iconPassword {
     margin-top: 5px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
 .btnPay {
-  background-image: linear-gradient(
-    to right,
-    var(--green) 0%,
-    #42aa61 51%,
-    #d8e41e 100%
-  );
+  background: linear-gradient(to right, #96c93d, #00b09b);
   margin: 10px 0px;
   padding: 8px;
   text-align: center;
@@ -119,32 +109,23 @@
   display: block;
   font-size: 18px;
   width: 100%;
+  font-weight: 600;
 }
 
 .btnPay:hover {
+  // opacity: 0.9;
   background-position: right center;
-  /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
 }
 
-.imageLogin {
-  max-width: 350px;
-  height: auto;
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
-.toggle {
+.wrapper {
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #512da8;
+  background-color: #5050b2;
   border-radius: 150px 0px 0px 100px;
-  background: linear-gradient(to right, #5c6bc0, #512da8);
+  background: linear-gradient(to right, #96c93d, #00b09b);
   color: #fff;
   padding: 0 30px;
   text-align: center;
@@ -159,10 +140,12 @@
     font-weight: 500;
   }
   .btn-register {
-    padding: 8px 18px;
+    margin-top: 4px;
+    padding: 8px 28px;
     border: 1px solid #fff;
     color: #fff;
     text-transform: uppercase;
     border-radius: 8px;
+    font-weight: 600;
   }
 }

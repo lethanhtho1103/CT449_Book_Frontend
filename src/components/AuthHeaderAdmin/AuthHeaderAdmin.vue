@@ -2,7 +2,7 @@
   <nav class="navbar bg-body-tertiary">
     <div class="title">
       <div class="logo">
-        <router-link to="/">
+        <router-link to="/admin/home">
           <img src="../../assets/logo.jpg" alt="Vue" />
           <span class="titleWeb">TT<span class="text-dark">Store</span></span>
         </router-link>
@@ -12,5 +12,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import "AuthHeader.scss";
+@import "AuthHeaderAdmin.scss";
 </style>
