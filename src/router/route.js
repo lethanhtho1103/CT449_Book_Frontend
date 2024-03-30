@@ -20,12 +20,20 @@ import HistoryAdmin from "@/views/HistoryAdmin/HistoryAdmin.vue";
 import Home from "@/views/Users/Home/Home.vue";
 import Login from "@/views/Users/Login/Login.vue";
 import Register from "@/views/Users/Register/Register.vue";
+import About from "@/views/Users/About/About.vue";
 
 const routes = [
   // User
   {
     path: "/",
     component: Home,
+    meta: {
+      layout: DefaultLayout,
+    },
+  },
+  {
+    path: "/about",
+    component: About,
     meta: {
       layout: DefaultLayout,
     },

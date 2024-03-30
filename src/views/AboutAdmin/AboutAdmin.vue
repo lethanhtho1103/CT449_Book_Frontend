@@ -31,7 +31,7 @@
             <div class="leftItem">
               <img
                 :src="'http://localhost:8082/' + item.HinhSach"
-                alt="Drink Image"
+                alt="Image"
                 class="imageItem"
               />
             </div>
@@ -378,7 +378,6 @@ const searchBooks = () => {
 };
 
 const isModal = ref(false);
-
 const showModal = () => {
   isModal.value = true;
 };
@@ -531,7 +530,6 @@ const handleOkDelete = () => {
     })
     .catch((err) => console.log(err));
 };
-
 const okButtonProps = {
   style: {
     background: "red", // Đặt màu đỏ cho nút "OK"

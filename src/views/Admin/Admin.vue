@@ -56,7 +56,6 @@
             <div class="cardInfo">
               <div class="leftCard">
                 <div class="iconCard" style="background-color: #cdf1ef">
-                  <!-- <i class="fa-solid fa-money-bill-wave" style="color: #05B9AA;"></i> -->
                   <i class="fa-solid fa-user-tie" style="color: #05b9aa"></i>
                 </div>
               </div>
@@ -113,7 +112,7 @@
               <td>{{ rent.SoLuong }}</td>
               <td>
                 {{
-                  tinhTien(
+                  thanhTien(
                     rent.NgayTra,
                     rent.NgayMuon,
                     rent.SoLuong,
@@ -208,16 +207,12 @@ const fetchData = () => {
 };
 fetchData();
 
-function tinhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
+function thanhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
   var startDate = new Date(ngayBatDau);
   var endDate = new Date(ngayKetThuc);
-
   var oneDay = 24 * 60 * 60 * 1000;
-
   var soNgay = Math.round(Math.abs((startDate - endDate) / oneDay));
-
   var tongTien = soQuyen * giaPerQuyen * soNgay;
-
   return tongTien;
 }
 
@@ -244,7 +239,7 @@ const handleOkAccess = () => {
   axios
     .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "A",
-      thanhTien: tinhTien(
+      thanhTien: thanhTien(
         rentChoice.value.NgayTra,
         rentChoice.value.NgayMuon,
         rentChoice.value.SoLuong,
@@ -270,7 +265,7 @@ const handleOkDeny = () => {
   axios
     .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "D",
-      thanhTien: tinhTien(
+      thanhTien: thanhTien(
         rentChoice.value.NgayTra,
         rentChoice.value.NgayMuon,
         rentChoice.value.SoLuong,
