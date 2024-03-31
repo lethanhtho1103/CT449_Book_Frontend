@@ -110,16 +110,7 @@
               <td>{{ formatDateTime(rent.NgayMuon) }}</td>
               <td>{{ formatDateTime(rent.NgayTra) }}</td>
               <td>{{ rent.SoLuong }}</td>
-              <td>
-                {{
-                  thanhTien(
-                    rent.NgayTra,
-                    rent.NgayMuon,
-                    rent.SoLuong,
-                    rent.MaSach.DonGia
-                  )
-                }}
-              </td>
+              <td>{{ rent.ThanhTien }} VND</td>
               <td class="d-flex justify-content-center">
                 <button @click="showModalAccess(rent, index)" class="accept">
                   <i class="fa-solid fa-check"></i>
@@ -207,15 +198,6 @@ const fetchData = () => {
 };
 fetchData();
 
-function thanhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
-  var startDate = new Date(ngayBatDau);
-  var endDate = new Date(ngayKetThuc);
-  var oneDay = 24 * 60 * 60 * 1000;
-  var soNgay = Math.round(Math.abs((startDate - endDate) / oneDay));
-  var tongTien = soQuyen * giaPerQuyen * soNgay;
-  return tongTien;
-}
-
 const dashBoard = () => {
   axios
     .get("http://localhost:8082/customer/dashboard")
@@ -239,12 +221,6 @@ const handleOkAccess = () => {
   axios
     .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "A",
-      thanhTien: thanhTien(
-        rentChoice.value.NgayTra,
-        rentChoice.value.NgayMuon,
-        rentChoice.value.SoLuong,
-        rentChoice.value.MaSach.DonGia
-      ),
       traSach: "W",
     })
     .then((res) => {
@@ -265,12 +241,6 @@ const handleOkDeny = () => {
   axios
     .put("http://localhost:8082/rent/" + rentChoice.value._id, {
       trangThai: "D",
-      thanhTien: thanhTien(
-        rentChoice.value.NgayTra,
-        rentChoice.value.NgayMuon,
-        rentChoice.value.SoLuong,
-        rentChoice.value.MaSach.DonGia
-      ),
     })
     .then((res) => {
       if (res.data.error) {

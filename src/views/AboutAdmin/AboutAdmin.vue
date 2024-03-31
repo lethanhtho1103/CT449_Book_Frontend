@@ -434,12 +434,10 @@ const handleOk = () => {
           toast.error(res.data.error);
         } else if (res.data.update) {
           handleCancel();
-
           toast.info(res.data.update);
           fetchData();
         } else {
           handleCancel();
-
           toast.success(res.data.message);
           fetchData();
         }

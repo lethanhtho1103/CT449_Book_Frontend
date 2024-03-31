@@ -97,7 +97,7 @@
 }
 
 .btnPay {
-  background: linear-gradient(to right, #96c93d, #00b09b);
+  background: linear-gradient(to right, #00b09b, #96c93d);
   margin: 10px 0px;
   padding: 8px;
   text-align: center;
@@ -125,7 +125,8 @@
   justify-content: center;
   background-color: #5050b2;
   border-radius: 150px 0px 0px 100px;
-  background: linear-gradient(to right, #96c93d, #00b09b);
+  // background: linear-gradient(to right, #96c93d, #00b09b);
+  background-color: #00b09b;
   color: #fff;
   padding: 0 30px;
   text-align: center;

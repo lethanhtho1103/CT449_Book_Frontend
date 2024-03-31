@@ -10,7 +10,7 @@
           placeholder="Tìm kiếm sách"
           aria-label="Search"
         />
-        <span @click="searchDrinks" class="iconSearch"
+        <span @click="searchBooks" class="iconSearch"
           ><i class="fa-solid fa-magnifying-glass"></i
         ></span>
       </div>
@@ -94,7 +94,7 @@
                   type="text"
                   class="inputGroup"
                   v-model="selectedItem.TenSach"
-                  name="tenSach"
+                  name=""
                   disabled="true"
                 />
               </div>
@@ -105,7 +105,7 @@
                   class="inputGroup"
                   min="1"
                   v-model="selectedItem.DonGia"
-                  name="donGia"
+                  name=""
                   disabled="true"
                 />
               </div>
@@ -184,12 +184,15 @@ import { toast } from "vue3-toastify";
 const data = ref([]);
 const searchQuery = ref("");
 const isLoginDG = localStorage.getItem("isLoginDG");
+const idDocGia = localStorage.getItem("ID_DG");
 const isModalRentBook = ref(false);
 const selectedItem = ref(null);
 const imageUploadRent = ref("../../public/imageIcon.jpg");
 const soLuong = ref(1);
 const ngayMuon = ref();
 const ngayTra = ref();
+const maSach = ref("");
+const donGia = ref(0);
 
 const errors = ref({
   ngayMuon: "",
@@ -219,7 +222,6 @@ const handleValidate = () => {
   } else {
     errors.value.ngayTra = "";
   }
-
   // Kiểm tra số lượng
   if (soLuong.value < 0) {
     errors.value.soLuong = "Vui lòng chọn số lượng dương";
@@ -247,12 +249,12 @@ const fetchData = () => {
 };
 fetchData();
 
-function thanhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
+function thanhTien(ngayBatDau, ngayKetThuc, soLuong, giaPerQuyen) {
   var startDate = new Date(ngayBatDau);
   var endDate = new Date(ngayKetThuc);
   var oneDay = 24 * 60 * 60 * 1000;
   var soNgay = Math.round(Math.abs((startDate - endDate) / oneDay) + 1);
-  var tongTien = soQuyen * giaPerQuyen * soNgay;
+  var tongTien = soLuong * giaPerQuyen * soNgay;
   if (isNaN(tongTien)) {
     return 0;
   }
@@ -261,21 +263,52 @@ function thanhTien(ngayBatDau, ngayKetThuc, soQuyen, giaPerQuyen) {
 
 const showModalRentBook = (item) => {
   isModalRentBook.value = true;
-  console.log(isModalRentBook.value);
   selectedItem.value = item;
+  maSach.value = item._id;
+  donGia.value = item.DonGia;
   imageUploadRent.value = `http://localhost:8082/${item.HinhSach}`;
 };
 
 const handleCancelRentBook = () => {
-  isModalEdit.value = false;
-  imageUpdate.value = null;
+  isModalRentBook.value = false;
 };
 
 const handleOkRentBook = () => {
   handleValidate();
+  console.log(idDocGia);
+  const isValid = Object.values(errors.value).every((error) => !error);
+  if (isValid) {
+    const data = {
+      maDocGia: idDocGia,
+      maSach: maSach.value,
+      ngayMuon: ngayMuon.value,
+      ngayTra: ngayTra.value,
+      soLuong: soLuong.value,
+      thanhTien: thanhTien(
+        ngayMuon.value,
+        ngayTra.value,
+        soLuong.value,
+        donGia.value
+      ),
+    };
+    axios
+      .post("http://localhost:8082/rent", data)
+      .then((res) => {
+        if (res.data.error) {
+          toast.error(res.data.error);
+        } else {
+          handleCancelRentBook();
+          toast.success(res.data.message);
+          fetchData();
+        }
+      })
+      .catch((err) => console.log(err));
+  } else {
+    console.log("Form is invalid. Please check your inputs.");
+  }
 };
 
-const searchDrinks = () => {
+const searchBooks = () => {
   if (searchQuery.value.trim() === "") {
     toast.warn("Vui lòng nhập ký tự");
   } else {

@@ -38,11 +38,6 @@ const columns = [
     key: "_id",
   },
   {
-    title: "Họ lót",
-    dataIndex: "HoLot",
-    key: "HoLot",
-  },
-  {
     title: "Tên",
     dataIndex: "Ten",
     key: "Ten",
