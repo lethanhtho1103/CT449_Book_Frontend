@@ -1,22 +1,19 @@
 <template>
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <!-- <form class="groupSearch" role="search">
-                <input class="inputSearch" type="search" placeholder="Search" aria-label="Search">
-                <span class="iconSearch"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </form> -->
       <div class="infoUser">
-        <!-- <div class="btnLogin">Login</div> -->
         <div v-if="isUserLoggedIn()" class="contentInfo">
-          <img
-            :src="imageUser"
-            class="imageUser"
-            style="margin-right: 4px"
-            alt="noImage"
-          />
-          <span class="nameUser">
-            {{ username }}
-          </span>
+          <router-link to="/profile" style="color: #000">
+            <img
+              :src="imageUser"
+              class="imageUser"
+              style="margin-right: 4px"
+              alt="noImage"
+            />
+            <span class="nameUser">
+              {{ username }}
+            </span>
+          </router-link>
         </div>
         <div v-else>
           <router-link to="/login" class="text-decoration-none">

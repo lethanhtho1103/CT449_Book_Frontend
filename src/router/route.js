@@ -23,6 +23,7 @@ import Register from "@/views/Users/Register/Register.vue";
 import About from "@/views/Users/About/About.vue";
 import Profile from "@/views/Users/Profile/Profile.vue";
 import EditProfile from "@/views/Users/EditProfile/EditProfile.vue";
+import Order from "@/views/Users/Order/Order.vue";
 
 const routes = [
   // User
@@ -43,6 +44,13 @@ const routes = [
   {
     path: "/profile",
     component: Profile,
+    meta: {
+      layout: DefaultLayout,
+    },
+  },
+  {
+    path: "/order",
+    component: Order,
     meta: {
       layout: DefaultLayout,
     },

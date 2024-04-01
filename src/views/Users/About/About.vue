@@ -75,7 +75,7 @@
         style="top: 40px"
         v-model:open="isModalRentBook"
         width="800px"
-        title="Mướn sách"
+        title="Mượn sách"
         @ok="handleOkRentBook"
         @cancel="handleCancelRentBook"
         okText="Xác nhận"

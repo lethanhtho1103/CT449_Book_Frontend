@@ -33,10 +33,6 @@
         ></span>
         <span class="text">Oders</span>
       </router-link>
-      <router-link to="/history" class="button">
-        <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
-        <span class="text">History</span>
-      </router-link>
       <router-link v-if="isLogin" to="/profile" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
         <span class="text">Profile</span>
@@ -70,16 +66,14 @@
 </template>
 
 <script setup>
-import { ref, watchEffect, onMounted } from "vue";
+import { ref } from "vue";
 import logoURL from "../../assets/logo.jpg";
-import { Modal, Button } from "ant-design-vue";
+import { Button } from "ant-design-vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
 
 const router = useRouter();
 
 const isLogin = localStorage.getItem("isLoginDG");
-
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
 
 const ToggleMenu = () => {

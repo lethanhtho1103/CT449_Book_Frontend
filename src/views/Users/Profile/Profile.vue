@@ -35,7 +35,7 @@
                   </div>
                   <div class="" style="margin-top: 130px; margin-left: 10px">
                     <h5>{{ data.Ten }}</h5>
-                    <p>{{ data.DiaChi }}</p>
+                    <p>{{ data.NgaySinh }}</p>
                   </div>
                 </div>
                 <div class="p-4 text-black" style="background-color: #f8f9fa">

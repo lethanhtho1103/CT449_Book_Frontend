@@ -220,8 +220,7 @@ const searchDocGia = () => {
     )
     .then((res) => {
       if (res.data.length > 0) {
-        console.log(res.data);
-        dataRented.value = res.data;
+        dataRented.value = res.data.filter((item) => item.TrangThai !== "W");
       } else {
         dataRented.value = [];
       }
