@@ -1,6 +1,30 @@
 <template>
   <div class="containPage" v-if="isLogin">
-    <h2>Đơn mượn đã duyệt</h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Đơn mượn đã duyệt</h2>
+      <div class="groundFilter">
+        <select v-model="searchTrangThai" class="filter">
+          <option value="">Trạng thái mượn</option>
+          <option value="W">Chờ nhận</option>
+          <option value="D">Đang mượn</option>
+          <option value="Y">Đã trả</option>
+          <option value="N">Chưa trả</option>
+        </select>
+        <button class="btn-filter" @click="searchDocGia">Lọc</button>
+      </div>
+      <div class="search">
+        <input
+          class="inputSearch"
+          v-model="searchQuery"
+          type="search"
+          placeholder="Tìm kiếm đọc giả"
+          aria-label="Search"
+        />
+        <span @click="searchDocGia" class="iconSearch"
+          ><i class="fa-solid fa-magnifying-glass"></i
+        ></span>
+      </div>
+    </div>
     <div class="contentPage" :style="`${isLogin ? '' : 'display: none'}`">
       <div class="list-group">
         <div v-if="dataRented.length === 0" class="orderEmpty">
@@ -176,6 +200,8 @@ const dataRented = ref([]);
 const isLogin = localStorage.getItem("isLogin");
 const selectedValue = ref("");
 const errorStatus = ref("");
+const searchQuery = ref("");
+const searchTrangThai = ref("");
 
 const fetchData = () => {
   axios
@@ -185,15 +211,31 @@ const fetchData = () => {
     })
     .catch((err) => console.log(err));
 };
-
 fetchData();
+
+const searchDocGia = () => {
+  axios
+    .get(
+      `http://localhost:8082/rent/filter-TenSach?tenDocGia=${searchQuery.value}&traSach=${searchTrangThai.value}`
+    )
+    .then((res) => {
+      if (res.data.length > 0) {
+        console.log(res.data);
+        dataRented.value = res.data;
+      } else {
+        dataRented.value = [];
+      }
+    })
+    .catch((error) => {
+      console.error("Lỗi khi nhận dữ liệu từ API", error);
+    });
+};
 
 const formatDateTime = (dateTime) => {
   return moment(dateTime).format("DD-MM-YYYY HH:mm:ss");
 };
 
 const isModal = ref(false);
-
 const showModal = (order) => {
   isModal.value = true;
   idOrder.value = order._id;

@@ -313,16 +313,11 @@ const searchBooks = () => {
     toast.warn("Vui lòng nhập ký tự");
   } else {
     axios
-      .get(`http://localhost:8082/product?search=${searchQuery.value}`)
+      .get(`http://localhost:8082/book?tenSach=${searchQuery.value}`)
       .then((res) => {
         if (res.data.length > 0) {
           console.log("Data search", res.data);
           data.value = res.data;
-          data.value = res.data.map((item) => ({
-            ...item,
-            SoLuong: 0,
-            Size: "",
-          }));
         } else {
           data.value = [];
         }

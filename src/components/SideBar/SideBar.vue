@@ -78,7 +78,7 @@ import axios from "axios";
 
 const router = useRouter();
 
-const isLogin = localStorage.getItem("isLogin");
+const isLogin = localStorage.getItem("isLoginDG");
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
 

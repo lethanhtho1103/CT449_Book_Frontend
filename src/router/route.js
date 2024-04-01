@@ -21,6 +21,7 @@ import Home from "@/views/Users/Home/Home.vue";
 import Login from "@/views/Users/Login/Login.vue";
 import Register from "@/views/Users/Register/Register.vue";
 import About from "@/views/Users/About/About.vue";
+import Profile from "@/views/Users/Profile/Profile.vue";
 
 const routes = [
   // User
@@ -34,6 +35,13 @@ const routes = [
   {
     path: "/about",
     component: About,
+    meta: {
+      layout: DefaultLayout,
+    },
+  },
+  {
+    path: "/profile",
+    component: Profile,
     meta: {
       layout: DefaultLayout,
     },
