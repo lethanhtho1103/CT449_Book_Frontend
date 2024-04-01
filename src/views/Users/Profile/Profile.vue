@@ -24,7 +24,7 @@
                       style="width: 150px; z-index: 1"
                     />
                     <router-link
-                      to="/editprofile"
+                      to="/edit-profile"
                       style="z-index: 1"
                       class="btn btn-edit"
                     >
