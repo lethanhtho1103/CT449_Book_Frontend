@@ -50,7 +50,7 @@
                   <template #overlay>
                     <a-menu>
                       <a-menu-item>
-                        <a @click="showModal(rented)"
+                        <a @click="showModal(rented, index)"
                           ><i class="fa-solid fa-pen" style="color: blue"></i
                         ></a>
                       </a-menu-item>
@@ -98,6 +98,9 @@
               cancelText="Đóng"
               okText="Xác nhận"
             >
+              <div style="color: rgb(64, 193, 250); font-size: 14px">
+                Đơn mượn số {{ indexOrder + 1 }}
+              </div>
               <select v-model="selectedValue" class="select-options">
                 <option value="">Chọn trạng thái mượn sách</option>
                 <option value="W">Chờ nhận</option>
@@ -202,6 +205,7 @@ const selectedValue = ref("");
 const errorStatus = ref("");
 const searchQuery = ref("");
 const searchTrangThai = ref("");
+const indexOrder = ref("");
 
 const fetchData = () => {
   axios
@@ -235,9 +239,10 @@ const formatDateTime = (dateTime) => {
 };
 
 const isModal = ref(false);
-const showModal = (order) => {
+const showModal = (order, index) => {
   isModal.value = true;
   idOrder.value = order._id;
+  indexOrder.value = index;
 };
 
 const handleCancelUpdate = () => {

@@ -21,10 +21,12 @@
         <span class="text">Home</span>
       </router-link>
       <router-link to="/admin/about" class="button">
-        <span class="material-icons"
-          ><i class="fa-solid fa-bell-concierge"></i
-        ></span>
-        <span class="text">Menu</span>
+        <span class="material-icons"><i class="fa-solid fa-book"></i></span>
+        <span class="text">Books</span>
+      </router-link>
+      <router-link to="/admin/published" class="button">
+        <span class="material-icons"><i class="fa-solid fa-shop"></i></span>
+        <span class="text">Published</span>
       </router-link>
       <router-link to="/admin/customer" class="button">
         <span class="material-icons"><i class="fa-solid fa-users"></i></span>

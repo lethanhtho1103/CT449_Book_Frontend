@@ -1,0 +1,155 @@
+.containPage {
+  padding: 20px 30px;
+}
+
+.btnAdd {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background-color: #46c35f;
+  color: #fff;
+  box-shadow: 0px 5px 5px rgb(195, 183, 183);
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btnAdd:active {
+  transform: scale(1.05);
+}
+
+.contentPage {
+  padding: 30px 20px 20px 20px;
+  background-color: #eae2e24a;
+  padding-bottom: 50px;
+  border-radius: 10px;
+}
+
+.ordersCustomer {
+  margin: 20px;
+  background-color: #fff;
+  border-top: none;
+}
+
+.accept {
+  border-radius: 50%;
+  border: 2px solid rgb(8, 172, 8);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(8, 172, 8);
+  margin-right: 5px;
+  transition: 0.5s;
+}
+
+.accept:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 5px rgba(20, 224, 129, 0.436);
+}
+
+.reject {
+  border-radius: 50%;
+  border: 2px solid red;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 14px;
+  margin-left: 5px;
+  transition: 0.5s;
+}
+
+.reject:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.462);
+}
+
+.inputDate {
+  border: none;
+  background-color: #9f9a9a3e;
+  width: 180px;
+  border-radius: 5px;
+}
+
+.imageOrderEmpty {
+  img {
+    width: 150px;
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+    color: #4b4646;
+  }
+}
+
+.rightModal {
+  .groupForm {
+    display: grid;
+    grid-template-columns: 94px auto;
+    padding: 5px 24px;
+    border-radius: 10px;
+    background-color: #e8d8f3;
+    color: #141a46;
+    margin: 10px;
+    select {
+      border: none;
+      background-color: transparent;
+      font-weight: 600;
+    }
+    span {
+      margin: 5px -10px;
+    }
+
+    .inputGroup {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      padding-left: 22px;
+      font-weight: 600;
+    }
+
+    .inputGroup::placeholder {
+      color: #59257a;
+
+      font-weight: 600;
+    }
+  }
+
+  .groupForm2 {
+    display: grid;
+    grid-template-columns: 60px auto;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #e8d8f3;
+    color: #141a46;
+    margin: 10px;
+
+    span {
+      margin: 5px 0px;
+    }
+
+    .groupText {
+      border: none;
+      background-color: transparent;
+      outline: none;
+      padding: 5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.815);
+    }
+
+    .groupText::placeholder {
+      color: rgba(255, 255, 255, 0.815);
+    }
+  }
+}
+
+.errorText {
+  margin: 0;
+  color: rgb(213, 14, 14);
+  padding: 0px 10px;
+}

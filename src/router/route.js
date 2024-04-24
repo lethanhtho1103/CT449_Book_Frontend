@@ -24,6 +24,7 @@ import About from "@/views/Users/About/About.vue";
 import Profile from "@/views/Users/Profile/Profile.vue";
 import EditProfile from "@/views/Users/EditProfile/EditProfile.vue";
 import Order from "@/views/Users/Order/Order.vue";
+import Published from "@/views/Published/Published.vue";
 
 const routes = [
   // User
@@ -41,6 +42,7 @@ const routes = [
       layout: DefaultLayout,
     },
   },
+
   {
     path: "/profile",
     component: Profile,
@@ -101,6 +103,13 @@ const routes = [
   {
     path: "/admin/about",
     component: AboutAdmin,
+    meta: {
+      layout: AdminLayout,
+    },
+  },
+  {
+    path: "/admin/published",
+    component: Published,
     meta: {
       layout: AdminLayout,
     },

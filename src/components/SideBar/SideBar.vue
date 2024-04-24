@@ -22,10 +22,8 @@
         <span class="text">Home</span>
       </router-link>
       <router-link to="/about" class="button">
-        <span class="material-icons"
-          ><i class="fa-solid fa-bell-concierge"></i
-        ></span>
-        <span class="text">Menu</span>
+        <span class="material-icons"><i class="fa-solid fa-book"></i></span>
+        <span class="text">Books</span>
       </router-link>
       <router-link to="/order" class="button">
         <span class="material-icons"
