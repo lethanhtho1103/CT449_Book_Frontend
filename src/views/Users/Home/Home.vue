@@ -2,7 +2,7 @@
   <div class="containPage">
     <div class="titlePage">
       <h2>
-        Welcome to
+        Chào mừng bạn đến với
         <span class="titleWeb">TT<span class="text-dark">Store</span></span>
       </h2>
     </div>
@@ -15,24 +15,25 @@
             <div class="row gx-lg-5 align-items-center">
               <div class="col-lg-6 mb-5 mb-lg-0">
                 <h1 class="my-5 fw-bold ls-tight titleIntro">
-                  There is no friend as loyal as a
+                  Không có người bạn nào chung thành như
                   <span class="titleWeb"
-                    >Book.<span class="text-dark"></span
+                    >Sách.<span class="text-dark"></span
                   ></span>
                   <br />
                   <span class="text-primary">(Ernest Hemingway)</span>
                 </h1>
                 <p style="color: hsl(217, 10%, 50.8%)">
-                  Books are not only pages filled with knowledge, but also doors
-                  opening to new worlds, endless sources of inspiration, and
-                  loyal companions in the loneliest moments of life. Within each
-                  page, we discover not only the culture, history, and
-                  philosophy of humanity but also encounter wonders, adventures,
-                  and valuable lessons for ourselves.
+                  Sách không chỉ là những trang kiến ​​thức mà còn là cánh cửa
+                  mở ra những thế giới mới, nguồn cảm hứng vô tận và người bạn
+                  đồng hành trung thành trong những giây phút cô đơn nhất của
+                  cuộc đời. Trong từng trang, chúng tôi khám phá không chỉ văn
+                  hóa, lịch sử và triết lý nhân văn mà còn gặp phải những điều
+                  kỳ diệu, những cuộc phiêu lưu, và những bài học quý giá cho
+                  chính chúng ta.
                 </p>
 
                 <router-link to="/about" class="text-decoration-none">
-                  <button class="btnReadMore">Order now</button>
+                  <button class="btnReadMore">Mượn sách</button>
                 </router-link>
               </div>
 
