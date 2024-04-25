@@ -18,31 +18,31 @@
         <span class="material-icons"
           ><i class="fa-solid fa-house icon"></i
         ></span>
-        <span class="text">Home</span>
+        <span class="text">Trang chủ</span>
       </router-link>
       <router-link to="/admin/about" class="button">
         <span class="material-icons"><i class="fa-solid fa-book"></i></span>
-        <span class="text">Books</span>
+        <span class="text">Sách</span>
       </router-link>
       <router-link to="/admin/published" class="button">
         <span class="material-icons"><i class="fa-solid fa-shop"></i></span>
-        <span class="text">Published</span>
+        <span class="text">Nhà xuất bản</span>
       </router-link>
       <router-link to="/admin/customer" class="button">
         <span class="material-icons"><i class="fa-solid fa-users"></i></span>
-        <span class="text">Customer</span>
+        <span class="text">Người dùng</span>
       </router-link>
       <router-link to="/admin/history" class="button">
         <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
-        <span class="text">History</span>
+        <span class="text">Đơn mượn</span>
       </router-link>
       <router-link v-if="isLogin" to="/admin/info" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
-        <span class="text">Profile</span>
+        <span class="text">Hồ sơ</span>
       </router-link>
       <router-link v-else to="/admin/login" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
-        <span class="text">Profile</span>
+        <span class="text">Hồ sơ</span>
       </router-link>
     </div>
     <div class="flex"></div>

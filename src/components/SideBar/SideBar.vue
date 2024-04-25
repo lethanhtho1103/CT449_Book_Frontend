@@ -19,25 +19,25 @@
         <span class="material-icons"
           ><i class="fa-solid fa-house icon"></i
         ></span>
-        <span class="text">Home</span>
+        <span class="text">Trang chủ</span>
       </router-link>
       <router-link to="/about" class="button">
         <span class="material-icons"><i class="fa-solid fa-book"></i></span>
-        <span class="text">Books</span>
+        <span class="text">Sách</span>
       </router-link>
       <router-link to="/order" class="button">
         <span class="material-icons"
           ><i class="fa-solid fa-bookmark icon"></i
         ></span>
-        <span class="text">Oders</span>
+        <span class="text">Đơn mượn</span>
       </router-link>
       <router-link v-if="isLogin" to="/profile" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
-        <span class="text">Profile</span>
+        <span class="text">Hồ sơ</span>
       </router-link>
       <router-link v-else to="/login" class="button">
         <span class="material-icons"><i class="fa-solid fa-user"></i></span>
-        <span class="text">Profile</span>
+        <span class="text">Hồ sơ</span>
       </router-link>
     </div>
     <div class="flex"></div>
