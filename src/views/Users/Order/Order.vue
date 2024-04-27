@@ -89,6 +89,13 @@
             </div>
             <div v-else class="statusOrderWait mr-0 mb-0">Chưa duyệt</div>
           </div>
+          <div
+            v-if="order.TraSach === 'Y'"
+            class="statusOrderSuccess mr-0 mb-0 mt-3"
+          >
+            Đã trả
+          </div>
+          <div v-else class="statusOrderSuccess mr-0 mb-0 mt-3">Chưa trả</div>
         </div>
       </div>
     </div>
